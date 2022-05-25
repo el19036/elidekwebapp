@@ -15,10 +15,13 @@ if (!$conn) {
 echo "<br>", "Connected successfully", "<br>";
 
 $del_titleErr = $del_dateErr = $proj_idErr = "";
-$del_title = $del_summary = $del_date = $proj_id =  "init";
+$del_title = $del_summary = $del_date = $proj_id =  "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["projectid"])) {
+    if (!(empty($_POST["backbutton"]))) {
+		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
+	}
+	if (empty($_POST["projectid"])) {
         $proj_idErr = "* Project ID is required";
         }
     else {
@@ -85,8 +88,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="text" id="del_summary" name="deliverablesummary" size ="60">
 <br>
 <input type="submit">
-</form>
+</form><br>
 <br>
-
+<form method="post">
+<input type="submit" name="backbutton" class="button" value="Back">
+</form>
 </body>
 </html>

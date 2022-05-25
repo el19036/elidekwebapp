@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="date" id="birthday" name="dateofbirth"><br>
 	<label for="hiredate">Hired on:<label/><br>
 	<input type="date" id="hiredate" name="datehired"><br>
-	<label for="orgainzation">Organization ID:<label/><br>
+	<label for="organization">Organization ID:<label/><br>
 	<input type="number" id="organization" name="orgid">
 	<span class="error"><?php echo "* ".$orgidErr;?></span><br>
 	
