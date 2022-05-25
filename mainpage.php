@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <body>
 
+<h1>Choose desired action</h1><br>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 	<input type="radio" id="Insert" name="mode" value="Create">
 	<label for="Insert">Create</label><br>
