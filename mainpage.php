@@ -10,16 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$modeselected = $_POST["mode"];
 		switch ($modeselected) {
 			case "Create":
-				header("Location:http://localhost/elidek/insert_main_menu.php");
+				header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
 				break;
 			case "Read":
-				header("Location:http://localhost/elidek/select_main_menu.php");
+				header("Location:http://localhost/elidekwebapp/select_main_menu.php");
 				break;
 			case "Update":
-				header("Location:http://localhost/elidek/update_main_menu.php");
+				header("Location:http://localhost/elidekwebapp/update_main_menu.php");
 				break;
 			case "Delete":
-				header("Location:http://localhost/elidek/delete_main_menu.php");
+				header("Location:http://localhost/elidekwebapp/delete_main_menu.php");
 				break;
 		}
 	}

@@ -6,7 +6,7 @@ $entity="";
 
 if($_SERVER["REQUEST_METHOD"]=="POST") {
 	if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidek/mainpage.php");
+		header("Location:http://localhost/elidekwebapp/mainpage.php");
 	}
 	if (empty($_POST["entity"])) {
 		$entityErr = "* Please select an entity to insert";
@@ -16,22 +16,22 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	}
 	switch ($entity) {
 		case "Program":
-			header("Location:http://localhost/elidek/ins_program.php");
+			header("Location:http://localhost/elidekwebapp/ins_program.php");
 			break;
 		case "Organization":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/index.php");
 			break;
 		case "Researcher":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/index.php");
 			break;
 		case "Employee":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/ins_employee.php");
 			break;
 		case "Project":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/index.php");
 			break;
 		case "Deliverable":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/index.php");
 			break;
 	}
 }
