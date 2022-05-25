@@ -14,20 +14,20 @@ CREATE TABLE employee(
   last_name VARCHAR(45) NOT NULL ,
   PRIMARY KEY (employee_id));
   
-  CREATE TABLE organisation (
+  CREATE TABLE organization (
   org_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   org_name VARCHAR(45) NOT NULL,
   city VARCHAR(45) NULL,
   address VARCHAR(45) NULL,
-  postal_code INT NULL,
+  zip_code INT(5) NULL,
   initials VARCHAR(45) NOT NULL DEFAULT 'NONE',
-  organisation_type VARCHAR(15) NOT NULL,
+  organization_type VARCHAR(15) NOT NULL,
   ministry_funds INT(12) NULL,
   private_funds INT(12) NULL,
   equity INT(12) NULL,
-  constraint has_type check(organisation_type in ('Research_Center','Firm','University')),
-  constraint budget  check((organisation_type='Research_Center' AND equity=NULL) OR  (organisation_type='University' AND equity=NULL 
-AND private_funds=NULL) OR (organisation_type='Firm' AND private_funds=NULL AND ministry_funds=NULL) OR 
+  constraint has_type check(organization_type in ('Research_Center','Firm','University')),
+  constraint budget  check((organization_type='Research_Center' AND equity=NULL) OR  (organization_type='University' AND equity=NULL 
+AND private_funds=NULL) OR (organization_type='Firm' AND private_funds=NULL AND ministry_funds=NULL) OR 
 (equity=NULL AND private_funds=NULL AND ministry_funds=NULL)),
     PRIMARY KEY (org_id)
     );
@@ -43,7 +43,7 @@ CREATE TABLE researcher (
   date_hired DATE,
   PRIMARY KEY (researcher_id),
   org_id int(10) UNSIGNED NOT NULL,
-  CONSTRAINT researcher_works_for FOREIGN KEY (org_id) REFERENCES organisation (org_id) ON UPDATE CASCADE
+  CONSTRAINT researcher_works_for FOREIGN KEY (org_id) REFERENCES organization (org_id) ON UPDATE CASCADE
 ) ;
 
 CREATE TABLE project(
@@ -69,7 +69,7 @@ CREATE TABLE project(
   CONSTRAINT sup_not_eval CHECK (researcher_id_sup <> researcher_id_ev),
   CONSTRAINT project_emp_id FOREIGN KEY (employee_id) REFERENCES employee (employee_id) ON UPDATE CASCADE,
   CONSTRAINT project_prog_id FOREIGN KEY (program_id) REFERENCES program (program_id) ON UPDATE CASCADE,
-  CONSTRAINT project_id_org FOREIGN KEY (org_id) REFERENCES organisation (org_id) ON UPDATE CASCADE,
+  CONSTRAINT project_id_org FOREIGN KEY (org_id) REFERENCES organization (org_id) ON UPDATE CASCADE,
   CONSTRAINT project_res_sup FOREIGN KEY (researcher_id_sup) REFERENCES researcher (researcher_id) ON UPDATE CASCADE,
   CONSTRAINT project_res_ev FOREIGN KEY (researcher_id_ev) REFERENCES researcher (researcher_id) ON UPDATE CASCADE,
   PRIMARY KEY(project_id)
@@ -84,7 +84,7 @@ CREATE TABLE project(
 
 CREATE TABLE org_phone(
 org_id int(10) unsigned not null,
-constraint phone_org_id foreign key (org_id) references organisation (org_id) on update cascade on delete cascade,
+constraint phone_org_id foreign key (org_id) references organization (org_id) on update cascade on delete cascade,
 phone_number int(10) unsigned not null,
 constraint pk_phone primary key (org_id, phone_number)
 );
