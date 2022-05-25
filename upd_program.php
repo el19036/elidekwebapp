@@ -32,13 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		else {
 			$department = $_POST["programdept"];
 		}
-		$sql = "INSERT INTO program (program_name, department)
+		/*$sql = "INSERT INTO program (program_name, department)
 			VALUES ('$program_name', '$department')";
 		if (mysqli_query($conn, $sql)) {
 			echo "New record created successfully";
 		} else {
 			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-		}
+		}*/
 	}
 	$sql = "SELECT program_id, program_name, department FROM program";
 	$result = mysqli_query($conn, $sql);
