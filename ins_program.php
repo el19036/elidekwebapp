@@ -1,4 +1,5 @@
 <?php
+//comment 2
 $servername = "localhost";
 $socket = 3306;
 $dbname = "elidekdb";
