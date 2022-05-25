@@ -6,7 +6,7 @@ $entity="";
 
 if($_SERVER["REQUEST_METHOD"]=="POST") {
 	if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidek/mainpage.php");
+		header("Location:http://localhost/elidekwebapp/mainpage.php");
 	}
 	if (empty($_POST["entity"])) {
 		$entityErr = "* Please select an entity to insert";
