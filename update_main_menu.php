@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	}
 	switch ($entity) {
 		case "Program":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidek/upd_program.php");
 			break;
 		case "Organization":
 			header("Location:http://localhost/elidek/index.php");
