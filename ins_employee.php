@@ -16,6 +16,9 @@ $firstnameErr = $lastnameErr = "";
 $firstname = $lastname = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	if (!(empty($_POST["backbutton"]))) {
+		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
+	}	
 	if (empty($_POST["employeefirstname"])) {
 	$firstnameErr = "* First name is required";
 	}
@@ -62,8 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<span class="error"><?php echo $lastnameErr;?></span><br>
 <br>
 <input type="submit">
-</form>
+</form><br>
 <br>
+<form method="post">
+<input type="submit" name="backbutton" class="button" value="Back">
+</form>
 
 </body>
 </html>
