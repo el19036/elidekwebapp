@@ -18,6 +18,9 @@ $programnameErr = $deptErr = "";
 $program_name = $department = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	if (!(empty($_POST["backbutton"]))) {
+		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
+	}
 	if (empty($_POST["programname"])) {
 	$programnameErr = "* Program name is required";
 	}
@@ -63,8 +66,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="text" id="p_dept" name="programdept">
 <br>
 <input type="submit">
-</form>
+</form><br>
 <br>
+<form method="post">
+<input type="submit" name="backbutton" class="button" value="Back">
+</form>
+
 
 </body>
 </html>

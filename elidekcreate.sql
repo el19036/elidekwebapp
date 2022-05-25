@@ -20,7 +20,7 @@ CREATE TABLE employee(
   city VARCHAR(45) NULL,
   address VARCHAR(45) NULL,
   zip_code INT(5) NULL,
-  initials VARCHAR(45) NOT NULL DEFAULT 'NONE',
+  initials VARCHAR(45) NOT NULL,
   organization_type VARCHAR(15) NOT NULL,
   ministry_funds INT(12) NULL,
   private_funds INT(12) NULL,
