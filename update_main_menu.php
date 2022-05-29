@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 			header("Location:http://localhost/elidekwebapp/upd_program.php");
 			break;
 		case "Organization":
-			header("Location:http://localhost/elidekwebapp/upd_orgaization.php");
+			header("Location:http://localhost/elidekwebapp/upd_organization.php");
 			break;
 		case "Researcher":
 			header("Location:http://localhost/elidekwebapp/upd_researcher.php");

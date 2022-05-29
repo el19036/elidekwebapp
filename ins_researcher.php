@@ -16,7 +16,6 @@ echo "<br>", "Connected successfully", "<br>";
 
 $firstnameErr = $lastnameErr = $sexErr = $orgidErr = "";
 $firstname = $lastname = $sex = $birthday = $datehired = $orgid = "";
-$date=date_create_from_format("j-M-Y","15-Mar-2013");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
