@@ -1,6 +1,4 @@
 <?php
-
-//comment
 $servername = "localhost";
 $socket = 3306;
 $dbname = "elidekdb";
@@ -14,109 +12,127 @@ if (!$conn) {
 
 echo "<br>", "Connected successfully", "<br>";
 
-$firstnameErr = $lastnameErr = $sexErr = $orgidErr = "";
-$firstname = $lastname = $sex = $birthday = $datehired = $orgid = "";
-$date=date_create_from_format("j-M-Y","15-Mar-2013");
+$start_dateErr = $end_dateErr = $fundingErr = $employee_idErr = $program_idErr = $org_idErr = $researcher_id_supErr = $researcher_id_evErr = $evaluationErr = $eval_dateErr = "";
+$start_date = $end_date = $funding = $title = $description = $employee_id = $program_id = $org_id = $researcher_id_sup = $researcher_id_ev = $evaluation = $eval_date ="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
+		header("Location:http://localhost/elidekwebapp/mainpage.php");
 	}
-	if (empty($_POST["researcherfirstname"])) {
-		$firstnameErr = "First name is required";
+	if (empty($_POST["$start_date"])) {
+	$start_dateErr = "* Start_date is required";
 	}
-	else {
-		$firstname = $_POST["researcherfirstname"];
+	else if (empty($_POST["end_date"])) {
+	$end_dateErr = "* End_date is required";
 	}
-	if (empty($_POST["researcherlastname"])) {
-		$lastnameErr = "Last name is required";
+	else if (empty($_POST["funding"])) {
+	$fundingErr = "* Funding is required";
 	}
-	else {
-		$lastname = $_POST["researcherlastname"];
+	else if (empty($_POST["employee_id"])) {
+	$employee_idErr = "* Employee_id is required";
 	}
-	if (empty($_POST["sex"])) {
-		$sexErr = "Sex required";
-	}	
-	else {
-		$sex = $_POST["sex"];
+	else if (empty($_POST["program_id"])) {
+	$program_idErr = "* Program_id is required";
 	}
-	if (empty($_POST["dateofbirth"])) {
-		$birthday = NULL;
+	else if (empty($_POST["org_id"])) {
+	$org_idErr = "* Org_id is required";
 	}
-	else {
-		$birthday = date_create($_POST["dateofbirth"]);
-		$birthday = date_format($birthday,"Y/m/d");
+	else if (empty($_POST["researcher_id_sup"])) {
+	$researcher_id_supErrErr = "* Researcher_id_sup is required";
 	}
-	if (empty($_POST["datehired"])) {
-		$datehired = NULL;
+	else if (empty($_POST["researcher_id_ev"])) {
+	$researcher_id_evErr = "* Researcher_id_ev is required";
 	}
-	else {
-		$datehired = date_create($_POST["datehired"]);
-		$datehired = date_format($datehired,"Y/m/d");
+	else if (empty($_POST["evaluation"])) {
+	$evaluationErr = "* Evaluation is required";
 	}
-	if (empty($_POST["orgid"])) {
-		$orgidErr = "Organization is required";
+	else if (empty($_POST["eval_date"])) {
+	$eval_dateErr = "* Eval_date is required";
 	}
 	else {
-		$orgid = $_POST["orgid"];
-	}
-	
-	if ($firstnameErr=="" && $lastnameErr=="" && $sexErr=="" && $orgidErr=="") {
-		$sql = "INSERT INTO researcher (first_name, last_name, sex, date_of_birth, date_hired, org_id)
-			VALUES ('$firstname', '$lastname', '$sex', '$birthday', '$datehired', '$orgid')";
+		$start_date = $_POST["start_date"];
+		$end_date = $_POST["end_date"];
+		$employee_id = $_POST["employee_id"];
+	    $program_id = $_POST["program_id"];
+		$funding = $_POST["funding"];
+		$org_id = $_POST["org_id"];
+		$researcher_id_sup = $_POST["researcher_id_sup"];
+		$researcher_id_ev = $_POST["researcher_id_ev"];
+		$evaluation = $_POST["evaluation"];
+		$eval_date = $_POST["eval_date"];
+		if (empty($_POST["title"])) {
+	       $title = NULL;
+	    }
+		else $tille= $_POST["title"];
+		if (empty($_POST["description"])) {
+	       $description = NULL;
+	    }
+		else $description= $_POST["description"];
+		
+		$sql = "INSERT INTO project (start_date, end_date, funding, project_title, project_description, employee_id, program_id, org_id, researcher_id_sup, researcher_id_ev, evaluation, evaluation_date)
+			VALUES ('$start_date', '$end_date', '$funding', '$title', '$description', '$employee_id', '$program_id', '$org_id', '$researcher_id_sup', '$researcher_id_ev', '$evaluation', '$eval_date')";
 		if (mysqli_query($conn, $sql)) {
-			echo "New record created successfully";
-		} else {
+			echo "New record created successfully", "<br>";
+			 $last_id = $conn->insert_id;	
+	    } 
+	    else {
 			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-		}
+		}	
+		
 	}
-	
-	$sql = "SELECT first_name, last_name, sex, date_of_birth, date_hired, org_id FROM researcher";
+	$sql = "SELECT project_id, start_date, end_date, funding, project_title, project_description, employee_id, program_id, org_id, researcher_id_sup, researcher_id_ev, evaluation, evaluation_date  FROM project";
 	$result = mysqli_query($conn, $sql);
 
 	if (mysqli_num_rows($result) > 0) {
 	  // output data of each row
 	  while($row = mysqli_fetch_assoc($result)) {
-		echo "First Name: " . $row["first_name"]. " - Last Name: " . $row["last_name"]. 
-		" - Sex: " . $row["sex"]. " - Birthday: " . $row["date_of_birth"]. " - Hired on: " . $row["date_hired"].
-		" - Organization ID: " . $row["org_id"]. "<br>";
+		echo "start_date: " . $row["start_date"]. " - end_date: " . $row["end_date"]. " - funding: " . $row["funding"]. " - project_title: " . $row["project_title"]. " - project_description: " . $row["project_description"]. 
+		" - employee_id: " . $row["employee_id"].  " - program_id: " . $row["program_id"]. "- org_id: " . $row["org_id"]. "- researcher_id_sup: " . $row["researcher_id_sup"].  " - researcher_id_ev: " . $row["researcher_id_ev"]. 
+		" - evaluation: " . $row["evaluation"]. " - evaluation_date: " . $row["evaluation_date"]. "<br>";
 	  }
 	} else {
 	  echo "0 results";
 	}
 
 	mysqli_close($conn);
-	
 }
 ?>
 <html>
 <body>
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-	<label for="fname">Research First Name:<label/><br>
-	<input type="text" id="fname" name="researcherfirstname">
-	<span class="error"><?php echo "* ".$firstnameErr;?></span><br>
-	<label for="lname">Researcher Last Name:<label/><br>
-	<input type="text" id="lname" name="researcherlastname">
-	<span class="error"><?php echo "* ".$lastnameErr;?></span><br>
-	Sex	:<span class="error"><?php echo "* ".$sexErr;?></span><br>
-	<input type="radio" id="male" name="sex" value="male">
-	<label for="male">Male<label/>
-	<input type="radio" id="female" name="sex" value="female">
-	<label for="female">Female<label/>
-	<input type="radio" id="other" name="sex" value="other">
-	<label for="other">Other<label/><br>
-	<label for="birthday">Date of Birth:<label/><br>
-	<input type="date" id="birthday" name="dateofbirth"><br>
-	<label for="hiredate">Hired on:<label/><br>
-	<input type="date" id="hiredate" name="datehired"><br>
-	<label for="orgainzation">Organization ID:<label/><br>
-	<input type="number" id="organization" name="orgid">
-	<span class="error"><?php echo "* ".$orgidErr;?></span><br>
+    <label for="start_date">Start Date:<label/><br>
+	<input type="date" id="start_date" name="start_date"><br>
+	<label for="end_date">End Date:<label/><br>
+	<input type="date" id="end_date" name="end_date"><br>
+	<label for="funding">Funding:<label/><br>
+	<input type="number"id="funding" name="funding" min="100000" max="1000000"><br>
+	<label for="project_title">Project's title:<label/><br>
+	<input type="text" id="title" name="title"><br>
+	<label for="description">Description:<label/><br>
+	<input type="text" id="description" name="description" size ="60"><br>
+	<label for="employee_id">Elidek employee's id:<label/><br>
+	<input type="number" id="employee_id" name="employee_id"><br>
+	<label for="program_id">ID of the program by which this project is funded:<label/><br>
+	<input type="number" id="program_id" name="program_id"><br>
+	<label for="org_id">ID of the organization this project belongs to:<label/><br>
+	<input type="number" id="org_id" name="org_id"><br>
+	<label for="researcher_id_sup">ID of the supervisor:<label/><br>
+	<input type="number" id="researcher_id_sup" name="researcher_id_sup"><br>
+	<label for="researcher_id_ev">ID of the evaluator:<label/><br>
+	<input type="number" id="researcher_id_ev" name="researcher_id_ev"><br>
+	<label for="evaluation">Evaluation:<label/><br>
+	<input type="number" id="evaluation" name="evaluation" min="1" max="100"><br>
+	<label for="eval_date">Evaluation Date:<label/><br>
+	<input type="date" id="eval_date" name="eval_date"><br>
+	
+	
 	
 <br>
 <input type="submit">
-</form><br>
+</form>
+<br>
+
 <br>
 <form method="post">
 <input type="submit" name="backbutton" class="button" value="Back">
