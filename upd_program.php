@@ -14,59 +14,89 @@ if (!$conn) {
 
 echo "<br>", "Connected successfully", "<br>";
 
-$programnameErr = $deptErr = "";
-$program_name = $department = "";
+$programnameErr = $deptErr = $programidErr = $valididErr = "";
+$program_name = $department = $programid = "";
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
+		header("Location:http://localhost/elidekwebapp/update_main_menu.php");
 	}
-	if (empty($_POST["programname"])) {
-	$programnameErr = "* Program name is required";
+	else if (empty($_POST["programid"])) {
+		$programidErr = "Program ID is required";
+	}
+	else if (empty($_POST["programname"])) {
+		$programnameErr = "Program name is required";
 	}
 	else {
-		$program_name = $_POST["programname"];
-		if (empty($_POST["programdept"])) {
-		$department = NULL;
-		}
+		$programid = $_POST["programid"];
+		$sql = "SELECT program_name, department FROM program WHERE program_id='$programid'";
+		//$sql = mysqli_real_escape_string($conn, $sql);
+		$result = mysqli_query($conn, $sql);
+		
+		if (mysqli_num_rows($result) == 1) {
+		  // retrieve one row of data if program_id exists
+			$row = mysqli_fetch_assoc($result);
+			$department = $row["department"];
+			
+			$program_name = $_POST["programname"];
+		
+			if (!empty($_POST["programdept"])) {
+				$department = $_POST["programdept"];
+			}
+			$sql = "UPDATE program 
+					SET program_name = '$program_name', department = '$department'
+					WHERE program_id = '$programid'";
+			//$sql = mysqli_real_escape_string($conn, $sql);
+			if (mysqli_query($conn, $sql)) {
+				echo "Record updated successfully"."<br>";
+			} else {
+				echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			}
+		} 
 		else {
-			$department = $_POST["programdept"];
+			// program_id does not exist
+			$valididErr = "** This ID is not valid **";
 		}
-		/*$sql = "INSERT INTO program (program_name, department)
-			VALUES ('$program_name', '$department')";
-		if (mysqli_query($conn, $sql)) {
-			echo "New record created successfully";
-		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-		}*/
 	}
-	$sql = "SELECT program_id, program_name, department FROM program";
-	$result = mysqli_query($conn, $sql);
-
-	if (mysqli_num_rows($result) > 0) {
-	  // output data of each row
-	  while($row = mysqli_fetch_assoc($result)) {
-		echo "id: " . $row["program_id"]. " - Name: " . $row["program_name"]. " - Department: " . $row["department"]. "<br>";
-	  }
-	} else {
-	  echo "0 results";
-	}
-
-	mysqli_close($conn);
 }
 ?>
 <html>
 <body>
 
+<h1> Update a program </h1>
+<?php echo $valididErr?>
+<br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+	<label for="p_id">Program ID:<label/><br>
+	<input type="number" id="p_id" name="programid">
+	<span class="error"><?php echo "* ", $programidErr;?></span><br>
 	<label for="p_name">Program Name:<label/><br>
 	<input type="text" id="p_name" name="programname">
-	<span class="error"><?php echo $programnameErr;?></span><br>
+	<span class="error"><?php echo "* " . $programnameErr;?></span><br>
 	<label for="p_dept">Program Department:<label/><br>
-	<input type="text" id="p_dept" name="programdept">
+	<input type="text" id="p_dept" name="programdept"><br>
 <br>
 <input type="submit">
-</form><br>
+</form><br><br>
+
+<?php
+$sql = "SELECT program_id, program_name, department FROM program";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  // output data of each row
+	while($row = mysqli_fetch_assoc($result)) {
+		echo "id: " . $row["program_id"]. " - Name: " . $row["program_name"]. " - Department: " . $row["department"]. "<br>";
+	}
+} 
+else {
+	echo "0 results";
+}
+mysqli_close($conn);
+?>
+
 <br>
 <form method="post">
 <input type="submit" name="backbutton" class="button" value="Back">
