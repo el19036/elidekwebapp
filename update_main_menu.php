@@ -15,22 +15,22 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	}
 	switch ($entity) {
 		case "Program":
-			header("Location:http://localhost/elidek/upd_program.php");
+			header("Location:http://localhost/elidekwebapp/upd_program.php");
 			break;
 		case "Organization":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/upd_orgaization.php");
 			break;
 		case "Researcher":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/upd_researcher.php");
 			break;
 		case "Employee":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/upd_employee.php");
 			break;
 		case "Project":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/upd_project.php");
 			break;
 		case "Deliverable":
-			header("Location:http://localhost/elidek/index.php");
+			header("Location:http://localhost/elidekwebapp/upd_deliverable.php");
 			break;
 	}
 }
