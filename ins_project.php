@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
 		header("Location:http://localhost/elidekwebapp/mainpage.php");
 	}
-	if (empty($_POST["$start_date"])) {
+	if (empty($_POST["start_date"])) {
 	$start_dateErr = "* Start_date is required";
 	}
 	else if (empty($_POST["end_date"])) {
@@ -80,13 +80,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}	
 		
 	}
-	$sql = "SELECT project_id, start_date, end_date, funding, project_title, project_description, employee_id, program_id, org_id, researcher_id_sup, researcher_id_ev, evaluation, evaluation_date  FROM project";
+	$sql = "SELECT project_id, start_date, end_date, duration, funding, project_title, project_description, employee_id, program_id, org_id, researcher_id_sup, researcher_id_ev, evaluation, evaluation_date  FROM project";
 	$result = mysqli_query($conn, $sql);
 
 	if (mysqli_num_rows($result) > 0) {
 	  // output data of each row
 	  while($row = mysqli_fetch_assoc($result)) {
-		echo "start_date: " . $row["start_date"]. " - end_date: " . $row["end_date"]. " - funding: " . $row["funding"]. " - project_title: " . $row["project_title"]. " - project_description: " . $row["project_description"]. 
+		echo "start_date: " . $row["start_date"]. " - end_date: " . $row["end_date"].  " - duration: " . $row["duration"]. " - funding: " . $row["funding"]. " - project_title: " . $row["project_title"]. " - project_description: " . $row["project_description"]. 
 		" - employee_id: " . $row["employee_id"].  " - program_id: " . $row["program_id"]. "- org_id: " . $row["org_id"]. "- researcher_id_sup: " . $row["researcher_id_sup"].  " - researcher_id_ev: " . $row["researcher_id_ev"]. 
 		" - evaluation: " . $row["evaluation"]. " - evaluation_date: " . $row["evaluation_date"]. "<br>";
 	  }

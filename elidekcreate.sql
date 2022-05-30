@@ -205,7 +205,7 @@ DELIMITER $
 CREATE TRIGGER calc_duration_ins before INSERT ON project
 FOR EACH ROW
 BEGIN
-set new.duration= year(new.end_date-new.start_date); 
+set new.duration= DATEDIFF(new.end_date, new.start_date) / 365.25 ; 
 END$   
 DELIMITER ;
 
@@ -213,7 +213,7 @@ DELIMITER $
 CREATE TRIGGER calc_duration_upd before update ON project
 FOR EACH ROW
 BEGIN
-set new.duration= year(new.end_date-new.start_date); 
+set new.duration= DATEDIFF(new.end_date, new.start_date) / 365.25 ; 
 END$   
 DELIMITER ;
 
