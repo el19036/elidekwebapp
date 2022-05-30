@@ -17,7 +17,7 @@ $org_name = $city = $address = $zip_code = $initials = $org_type = $ministry_fun
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidekwebapp/mainpage.php");
+		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
 	}
 	if (empty($_POST["org_name"])) {
 	$org_nameErr = "* Org_name is required";
@@ -57,10 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    }
 		else $equity = $_POST["equity"];
 		
-		if ($org_type = "University") {
+		if ($org_type == "University") {
 			$private_funds = $equity = NULL;
 		}
-		else if ($org_type = "Firm"){
+		else if ($org_type == "Firm"){
 			$private_funds = $ministry_funds = NULL;
 		}
 		else {
