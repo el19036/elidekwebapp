@@ -102,29 +102,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <label for="start_date">Start Date:<label/><br>
-	<input type="date" id="start_date" name="start_date"><br>
+	<input type="date" id="start_date" name="start_date">
+	<span class="error"><?php echo "* ".$start_dateErr?></span><br>
 	<label for="end_date">End Date:<label/><br>
-	<input type="date" id="end_date" name="end_date"><br>
+	<input type="date" id="end_date" name="end_date">
+	<span class="error"><?php echo "* ".$end_dateErr?></span><br>
 	<label for="funding">Funding:<label/><br>
-	<input type="number"id="funding" name="funding" min="100000" max="1000000"><br>
+	<input type="number"id="funding" name="funding" min="100000" max="1000000">
+	<span class="error"><?php echo "* ".$fundingErr?></span><br>
 	<label for="project_title">Project's title:<label/><br>
 	<input type="text" id="title" name="title"><br>
 	<label for="description">Description:<label/><br>
 	<input type="text" id="description" name="description" size ="60"><br>
 	<label for="employee_id">Elidek employee's id:<label/><br>
-	<input type="number" id="employee_id" name="employee_id"><br>
+	<input type="number" id="employee_id" name="employee_id">
+	<span class="error"><?php echo "* ".$employee_idErr?></span><br>
 	<label for="program_id">ID of the program by which this project is funded:<label/><br>
-	<input type="number" id="program_id" name="program_id"><br>
+	<input type="number" id="program_id" name="program_id">
+	<span class="error"><?php echo "* ".$program_idErr?></span><br>
 	<label for="org_id">ID of the organization this project belongs to:<label/><br>
-	<input type="number" id="org_id" name="org_id"><br>
+	<input type="number" id="org_id" name="org_id">
+	<span class="error"><?php echo "* ".$org_idErr?></span><br>
 	<label for="researcher_id_sup">ID of the supervisor:<label/><br>
-	<input type="number" id="researcher_id_sup" name="researcher_id_sup"><br>
+	<input type="number" id="researcher_id_sup" name="researcher_id_sup">
+	<span class="error"><?php echo "* ".$researcher_id_supErr?></span><br>
 	<label for="researcher_id_ev">ID of the evaluator:<label/><br>
-	<input type="number" id="researcher_id_ev" name="researcher_id_ev"><br>
+	<input type="number" id="researcher_id_ev" name="researcher_id_ev">
+	<span class="error"><?php echo "* ".$researcher_id_evErr?></span><br>
 	<label for="evaluation">Evaluation:<label/><br>
-	<input type="number" id="evaluation" name="evaluation" min="1" max="100"><br>
+	<input type="number" id="evaluation" name="evaluation" min="1" max="100">
+	<span class="error"><?php echo "* ".$evaluationErr?></span><br>
 	<label for="eval_date">Evaluation Date:<label/><br>
-	<input type="date" id="eval_date" name="eval_date"><br>
+	<input type="date" id="eval_date" name="eval_date">
+	<span class="error"><?php echo "* ".$eval_dateErr?></span><br>
 	
 	
 	
