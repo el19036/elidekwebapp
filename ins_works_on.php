@@ -17,7 +17,10 @@ $proj_id = $res_id = "";
 $proj_idErr =$res_idErr = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["projectid"])) {
+    if (!(empty($_POST["backbutton"]))) {
+		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
+	}
+	if (empty($_POST["projectid"])) {
         $proj_idErr = "* Project ID is required";
         }
     else {
@@ -67,6 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <input type="submit">
 </form>
 <br>
+
+<br>
+<form method="post">
+<input type="submit" name="backbutton" class="button" value="Back">
+</form>
 
 </body>
 </html>

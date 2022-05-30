@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
 				break;
 			case "Read":
-				header("Location:http://localhost/elidekwebapp/select_main_menu.php");
+				header("Location:http://localhost/elidekwebapp/read_main_menu.php");
 				break;
 			case "Update":
 				header("Location:http://localhost/elidekwebapp/update_main_menu.php");
