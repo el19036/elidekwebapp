@@ -17,7 +17,7 @@ $start_date = $end_date = $funding = $title = $description = $employee_id = $pro
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidekwebapp/mainpage.php");
+		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
 	}
 	if (empty($_POST["start_date"])) {
 	$start_dateErr = "* Start_date is required";
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (empty($_POST["title"])) {
 	       $title = NULL;
 	    }
-		else $tille= $_POST["title"];
+		else $title= $_POST["title"];
 		if (empty($_POST["description"])) {
 	       $description = NULL;
 	    }
