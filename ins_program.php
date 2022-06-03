@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
 	}
 	if (empty($_POST["programname"])) {
-	$programnameErr = "* Program name is required";
+	$programnameErr = "Program name is required";
 	}
 	else {
 		$program_name = $_POST["programname"];
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<label for="p_name">Program Name:<label/><br>
 	<input type="text" id="p_name" name="programname">
-	<span class="error"><?php echo $programnameErr;?></span><br>
+	<span class="error"><?php echo "* ".$programnameErr;?></span><br>
 	<label for="p_dept">Program Department:<label/><br>
 	<input type="text" id="p_dept" name="programdept">
 <br>

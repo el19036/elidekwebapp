@@ -29,16 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
     else{
 		$delete_id = ($_POST["delete_id"]);
-	}		
+		$sql = "delete FROM employee where employee_id =' $delete_id'";
+		if(mysqli_query($conn, $sql)){
+		echo "Employee deleted successfully"."<br>";
+		}
+		else {
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+	    }
+	}
 }
 	
-	
 
-	$sql = "delete FROM employee where employee_id =' $delete_id'";
-	$result = mysqli_query($conn, $sql);
-
-
-	mysqli_close($conn);
 ?>
 <html>
 <body>
@@ -52,11 +53,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <input type="submit">
 </form><br>
 <br>
-
-<br>
 <form method="post">
 <input type="submit" name="backbutton" class="button" value="Back">
 </form>
+
+<?php
+$sql = "SELECT * FROM employee";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  // output data of each row
+	while($row = mysqli_fetch_assoc($result)) {
+		echo "employee id: " . $row["employee_id"]. " - First Name: " . $row["first_name"]. " - Last Name: " . $row["last_name"]. "<br>";
+	}
+} 
+else {
+	echo "0 results";
+}
+mysqli_close($conn);
+?>
 
 
 </body>

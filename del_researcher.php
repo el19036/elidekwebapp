@@ -29,16 +29,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
     else{
 		$delete_id = ($_POST["delete_id"]);
+		$sql = "delete FROM researcher where researcher_id =' $delete_id'";
+		if(mysqli_query($conn, $sql)){
+			echo "Researcher deleted successfully"."<br>";
+		}
+		else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
 	}		
 }
 	
-	
-
-	$sql = "delete FROM researcher where researcher_id =' $delete_id'";
-	$result = mysqli_query($conn, $sql);
-
-
-	mysqli_close($conn);
 ?>
 <html>
 <body>
@@ -58,6 +58,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <input type="submit" name="backbutton" class="button" value="Back">
 </form>
 
+<?php
+$sql = "SELECT researcher_id, first_name, last_name, sex, date_of_birth, date_hired, org_id FROM researcher";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  // output data of each row
+  while($row = mysqli_fetch_assoc($result)) {
+	echo "ID: " . $row["researcher_id"]. " - First Name: " . $row["first_name"]. " - Last Name: " . $row["last_name"]. 
+	" - Sex: " . $row["sex"]. " - Birthday: " . $row["date_of_birth"]. " - Hired on: " . $row["date_hired"].
+	" - Organization ID: " . $row["org_id"]. "<br>";
+  }
+} else {
+  echo "0 results";
+}
+
+mysqli_close($conn);
+?>
 
 </body>
 </html>

@@ -20,13 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
 	}
 	if (empty($_POST["org_name"])) {
-	$org_nameErr = "* Org_name is required";
+	$org_nameErr = "Org_name is required";
 	}
 	else if (empty($_POST["initials"])) {
-	$initialsErr = "* Org_name is required";
+	$initialsErr = "Initials are required";
 	}
 	else if (empty($_POST["org_type"])) {
-	$typeErr = "* Org_type is required";
+	$typeErr = "Org_type is required";
 	}
 	else {
 		$org_name = $_POST["org_name"];
@@ -172,20 +172,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}	
 		
 	}
-	$sql = "SELECT org_id, org_name, city, address, zip_code, initials, organization_type, ministry_funds, private_funds, equity FROM organization";
-	$result = mysqli_query($conn, $sql);
-
-	if (mysqli_num_rows($result) > 0) {
-	  // output data of each row
-	  while($row = mysqli_fetch_assoc($result)) {
-		echo "organization id: " . $row["org_id"]. " - Organization_name: " . $row["org_name"]. " - city: " . $row["city"]. " - address: " . $row["address"]. " - zip_code: " . $row["zip_code"]. 
-		" - initials: " . $row["initials"].  " - organization_type: " . $row["organization_type"]. "- ministry_funds: " . $row["ministry_funds"]. "- private_funds: " . $row["private_funds"].  " - equity: " . $row["equity"].  "<br>";
-	  }
-	} else {
-	  echo "0 results";
-	}
-
-	mysqli_close($conn);
 }
 ?>
 <html>
@@ -194,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<label for="org_name">Organization's Name:<label/><br>
 	<input type="text" id="org_name" name="org_name">
-	<span class="error"><?php echo $org_nameErr;?></span><br>
+	<span class="error"><?php echo "* ".$org_nameErr;?></span><br>
 	<label for="city">City:<label/><br>
 	<input type="text" id="city" name="city"><br>
 	<label for="address">address:<label/><br>
@@ -202,16 +188,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<label for="zip_code">Zip_code:<label/><br>
 	<input type="number"id="zip_code" name="zip_code" min="1" max="99999"><br>
 	<label for="initials">Initials:<label/><br>
-	<input type="text"id="initials" name="initials"><br>
-	<span class="error"><?php echo $initialsErr;?></span><br>
-	<label for="org_type">Type:<label/><br>
+	<input type="text"id="initials" name="initials">
+	<span class="error"><?php echo "* ".$initialsErr;?></span><br>
+	<label for="org_type">Type:<label/>
+	<span class="error"><?php echo "* ".$typeErr;?></span><br>
 	<input type="radio" id="Firm" name="org_type" value="Firm">
 	<label for="Firm">Firm<label/><br>
 	<input type="radio" id="University" name="org_type" value="University">
 	<label for="University">University<label/><br>
 	<input type="radio" id="Recearch_Center" name="org_type" value="Research_Center">
 	<label for="Reseach_Center">Reseach_Center<label/><br>
-	<span class="error"><?php echo $typeErr;?></span><br>
 	<label for="ministry_funds">Ministry Funds:<label/><br>
 	<input type="number"id="ministry_funds" name="ministry_funds"><br>
 	<label for="private_funds">private Funds:<label/><br>
@@ -247,6 +233,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <input type="submit" name="backbutton" class="button" value="Back">
 </form>
 
+<?php
+$sql = "SELECT org_id, org_name, city, address, zip_code, initials, organization_type, ministry_funds, private_funds, equity FROM organization";
+	$result = mysqli_query($conn, $sql);
 
+	if (mysqli_num_rows($result) > 0) {
+	  // output data of each row
+	  while($row = mysqli_fetch_assoc($result)) {
+		echo "organization id: " . $row["org_id"]. " - Organization_name: " . $row["org_name"]. " - city: " . $row["city"]. " - address: " . $row["address"]. " - zip_code: " . $row["zip_code"]. 
+		" - initials: " . $row["initials"].  " - organization_type: " . $row["organization_type"]. "- ministry_funds: " . $row["ministry_funds"]. "- private_funds: " . $row["private_funds"].  " - equity: " . $row["equity"].  "<br>";
+	  }
+	} else {
+	  echo "0 results";
+	}
+
+mysqli_close($conn);
+?>
 </body>
 </html>

@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
 	}	
 	if (empty($_POST["employeefirstname"])) {
-	$firstnameErr = "* First name is required";
+	$firstnameErr = "First name is required";
 	}
 	else {
 		$firstname = $_POST["employeefirstname"];
 		if (empty($_POST["employeelastname"])) {
-		$lastnameErr = "* Last name is required";
+		$lastnameErr = "Last name is required";
 		}
 		else {
 			$lastname = $_POST["employeelastname"];
@@ -59,10 +59,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<label for="emp_fname">Employee First Name:<label/><br>
 	<input type="text" id="emp_name" name="employeefirstname">
-	<span class="error"><?php echo $firstnameErr;?></span><br>
+	<span class="error"><?php echo "* ".$firstnameErr;?></span><br>
 	<label for="emp_lname">Employee Last Name:<label/><br>
 	<input type="text" id="emp_lname" name="employeelastname">
-	<span class="error"><?php echo $lastnameErr;?></span><br>
+	<span class="error"><?php echo "* ".$lastnameErr;?></span><br>
 <br>
 <input type="submit">
 </form><br>

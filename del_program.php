@@ -29,17 +29,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
     else{
 		$delete_id = ($_POST["delete_id"]);
+		$sql = "delete FROM program where program_id =' $delete_id'";
+		if(mysqli_query($conn, $sql)){
+			echo "Program  deleted successfully"."<br>";
+		}
+		else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
 	}		
 }
 	
 	
 
-	$sql = "delete FROM program where program_id =' $delete_id'";
-	$result = mysqli_query($conn, $sql);
-
-	
-
-	mysqli_close($conn);
 ?>
 <html>
 <body>
@@ -58,7 +59,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form method="post">
 <input type="submit" name="backbutton" class="button" value="Back">
 </form>
+<?php
+$sql = "SELECT program_id, program_name, department FROM program";
+$result = mysqli_query($conn, $sql);
 
+if (mysqli_num_rows($result) > 0) {
+  // output data of each row
+	while($row = mysqli_fetch_assoc($result)) {
+		echo "id: " . $row["program_id"]. " - Name: " . $row["program_name"]. " - Department: " . $row["department"]. "<br>";
+	}
+} 
+else {
+	echo "0 results";
+}
+mysqli_close($conn);
+?>
 
 </body>
 </html>
