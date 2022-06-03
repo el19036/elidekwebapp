@@ -14,7 +14,7 @@ echo "<br>", "Connected successfully", "<br>";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidekwebapp/queries_main_menu");
+		header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
 	}
 }
 echo "All researchers working on more than 5 projects with no deliverables are shown below:", "<br>";
