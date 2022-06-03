@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 			header("Location:http://localhost/elidekwebapp/del_program.php");
 			break;
 		case "projectsfiltered":
-			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
+			header("Location:http://localhost/elidekwebapp/view_project_filtered.php");
 			break;
 		case "researchersprojects":
 			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
@@ -74,7 +74,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	<label for="3.7">TOP 5 ELIDEK Employees With The Most Funds Granted(3.7)</label><br>
 	<input type="radio" id="3.8" name="query" value="nodeliverables">
 	<label for="3.8">Researchers That Don't Deliver(3.8)</label><br>
-	<span class="error"><?php echo $queryErr;?></span> <br>
+	<br>
+	<input type="submit" value="Next"><br>
+	<span class="error"><?php echo $queryErr;?></span>
 </form>
 
 <br>

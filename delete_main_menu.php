@@ -48,17 +48,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	<input type="radio" id="program" name="entity" value="Program">
 	<label for="program">Program</label><br>
 	<input type="radio" id="organization" name="entity" value="Organization">
-	<label for="organization">Organization</label><br>
+	<label for="organization">Organization (and/or their phone number)</label><br>
 	<input type="radio" id="researcher" name="entity" value="Researcher">
 	<label for="researcher">Researcher</label><br>
 	<input type="radio" id="employee" name="entity" value="Employee">
 	<label for="employee">Employee (ELIDEK Staff)</label><br>
 	<input type="radio" id="project" name="entity" value="Project">
-	<label for="project">Project</label><br>
+	<label for="project">Project (and/or their Research Field)</label><br>
 	<input type="radio" id="deliverable" name="entity" value="Deliverable">
 	<label for="deliverable">Deliverable Product</label><br>
 	<input type="radio" id="works_on" name="entity" value="Works_on">
-	<label for="works_on">Researcher to a Project</label><br>
+	<label for="works_on">Researcher Working on a Project</label><br>
 	<input type="submit" value="Next"><br>
 	<span class="error"><?php echo $entityErr;?></span> <br>
 </form>

@@ -229,6 +229,22 @@ IF ((SELECT COUNT(*) FROM project WHERE project_id = new.project_id AND
 END$   
 DELIMITER ;
 
+DELIMITER $
+CREATE TRIGGER add_supervisor_works_on_INSERT AFTER INSERT ON project 
+FOR EACH ROW
+BEGIN
+    INSERT INTO works_on (project_id, researcher_id) VALUES (new.project_id, new.researcher_id_sup);
+END$   
+DELIMITER ;
+
+DELIMITER $
+CREATE TRIGGER add_supervisor_works_on_UPDATE AFTER UPDATE ON project 
+FOR EACH ROW
+BEGIN
+    REPLACE INTO works_on 
+    SET project_id = new.project_id, researcher_id = new.researcher_id_sup;
+END$   
+DELIMITER ;
 
 INSERT INTO employee (employee_id, first_name, last_name)
 	VALUES (1, 'Νικόλαος', 'Παπαδόπουλος'), 

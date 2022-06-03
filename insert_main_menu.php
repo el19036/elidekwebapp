@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	<input type="radio" id="deliverable" name="entity" value="Deliverable">
 	<label for="deliverable">Deliverable Product</label><br>
 	<input type="radio" id="works_on" name="entity" value="Works_on">
-	<label for="works_on">Researcher to a Project</label><br>
+	<label for="works_on">Researcher Working on a Project</label><br>
 	<input type="submit" value="Next"><br>
 	<span class="error"><?php echo $entityErr;?></span> <br>
 </form>
