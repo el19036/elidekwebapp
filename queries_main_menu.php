@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 			header("Location:http://localhost/elidekwebapp/view_project_filtered.php");
 			break;
 		case "researchersprojects":
-			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
+			header("Location:http://localhost/elidekwebapp/view_researcher_projects.php");
 			break;
 		case "organizationsresearchers":
 			header("Location:http://localhost/elidekwebapp/view_organizations_researchers.php");
