@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	}
 	switch ($query) {
 		case "allprograms":
-			header("Location:http://localhost/elidekwebapp/del_program.php");
+			header("Location:http://localhost/elidekwebapp/view_available_programs.php");
 			break;
 		case "projectsfiltered":
 			header("Location:http://localhost/elidekwebapp/view_project_filtered.php");
@@ -23,8 +23,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 		case "researchersprojects":
 			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
 			break;
-		case "mainview2":
-			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
+		case "organizationsresearchers":
+			header("Location:http://localhost/elidekwebapp/view_organizations_researchers.php");
 			break;
 		case "trendingfield":
 			header("Location:http://localhost/elidekwebapp/view_trending_field.php");
@@ -60,8 +60,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	<label for="3.1.2">All Projects(3.1)</label><br>
 	<input type="radio" id="3.2.1" name="query" value="researchersprojects">
 	<label for="3.2.1">Researcher's Projects(3.2)</label><br>
-	<input type="radio" id="3.2.2" name="query" value="mainview2">
-	<label for="3.2.2">(Placeholder text)(3.2)</label><br>
+	<input type="radio" id="3.2.2" name="query" value="organizationsresearchers">
+	<label for="3.2.2">Organization's Researchers(3.2)</label><br>
 	<input type="radio" id="3.3" name="query" value="trendingfield">
 	<label for="3.3">Trending Research Field(3.3)</label><br>
 	<input type="radio" id="3.4" name="query" value="back2back">
