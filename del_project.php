@@ -26,15 +26,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($_POST["delete_id"])) {
 		$deleteErr = "* Delete id is required";
 	}
-    else{
+    elseif (empty($_POST["field"])) {
 		$delete_id = ($_POST["delete_id"]);
-	}		
+		$sql = "delete FROM project where project_id =' $delete_id'";
+		if(mysqli_query($conn, $sql)){
+			echo "Project deleted successfully"."<br>";
+		}
+		else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
+	}
+	else {
+		$delete_id = ($_POST["delete_id"]);
+		$field = strtoupper($_POST["phone_nr"]);
+		$sql = "SELECT * FROM research_field WHERE project_id = '$delete_id' AND field_name = '$field'";
+		$result = mysqli_query($conn, $sql);
+		if (mysqli_num_rows($result) == 1) {
+			$sql = "delete FROM research_field WHERE project_id = '$delete_id' AND field_name = '$field'";
+			if(mysqli_query($conn, $sql)){
+				echo "Phone number deleted successfully"."<br>";
+			}
+			else {
+				echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			}
+		}
+		else {
+			$fieldErr = "Project and field name don't match";
+		}
+	}
 }
 	
 	
 
-	$sql = "delete FROM project where project_id =' $delete_id'";
-	$result = mysqli_query($conn, $sql);
+	
 
 
 	mysqli_close($conn);
@@ -46,6 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<label for="delete">Delete project with id:<label/><br>
 	<input type="number" id="delete" name="delete_id" min="0">
 	<span class="error"><?php echo $deleteErr;?></span><br>
+	<label for="field1">Project's Field (only fill to delete project's field):<label/><br>
+	<input type="text"id="field1" name="field">
+	<span class="error"><?php echo $fieldErr?></span><br>
 	
 <br>
 <input type="submit">

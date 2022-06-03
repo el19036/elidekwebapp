@@ -73,7 +73,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			VALUES ('$start_date', '$end_date', '$funding', '$title', '$description', '$employee_id', '$program_id', '$org_id', '$researcher_id_sup', '$researcher_id_ev', '$evaluation', '$eval_date')";
 		if (mysqli_query($conn, $sql)) {
 			echo "New record created successfully", "<br>";
-			 $last_id = $conn->insert_id;	
+			$last_id = $conn->insert_id;	
+			 
+			$field1 = $field2 = $field3 = ""
+			if (!empty($_POST["field1"])) {
+			   $field1 = strtoupper($_POST["field1"]);
+			   $sql = "INSERT INTO research_field (project_id, field_name)  VALUES ('$last_id','$field1')";
+				if (mysqli_query($conn, $sql)) {
+				 echo "Field added successfully", "<br>";
+				}
+			}
+			if (!empty($_POST["field2"])) {
+			   $field2 = strtoupper($_POST["field2"]);
+			   $sql = "INSERT INTO research_field (project_id, field_name)  VALUES ('$last_id','$field2')";
+				if (mysqli_query($conn, $sql)) {
+				 echo "Field added successfully", "<br>";
+				}
+			}
+			if (!empty($_POST["field3"])) {
+			   $field1 = strtoupper($_POST["field3"]);
+			   $sql = "INSERT INTO research_field (project_id, field_name)  VALUES ('$last_id','$field3')";
+				if (mysqli_query($conn, $sql)) {
+				 echo "Field added successfully", "<br>";
+				}
+			}
 	    } 
 	    else {
 			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -135,8 +158,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<label for="eval_date">Evaluation Date:<label/><br>
 	<input type="date" id="eval_date" name="eval_date">
 	<span class="error"><?php echo "* ".$eval_dateErr?></span><br>
-	
-	
+	<label for="field1">Project's Field 1:<label/><br>
+	<input type="text"id="field1" name="field1"><br>
+	<label for="field2">Project's Field 2:<label/><br>
+	<input type="text"id="field2" name="field2"><br>
+	<label for="field3">Project's Field 3:<label/><br>
+	<input type="text"id="field3" name="field3"><br>
 	
 <br>
 <input type="submit">

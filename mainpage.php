@@ -21,6 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			case "Delete":
 				header("Location:http://localhost/elidekwebapp/delete_main_menu.php");
 				break;
+			case "Queries":
+				header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
+				break;
 		}
 	}
 }
@@ -39,6 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<label for="Update">Update</label><br>
 	<input type="radio" id="Delete" name="mode" value="Delete">
 	<label for="Delete">Delete</label><br>
+	<input type="radio" id="Queries" name="mode" value="Queries">
+	<label for="Delete">Bookmarked Searches</label><br>
 	<input type="submit" value="Next"><br>
 	<span class="error"><?php echo $modeErr;?></span> <br>
 </form>
