@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					$sql1 = "SELECT * FROM research_field WHERE project_id='$project_id' AND field_name='$fieldold'";
 					$result1 = mysqli_query($conn, $sql1);
 					if (mysqli_num_rows($result1) == 1) {
-						$sql1 = "UPDATE research_field SET field_name = '$fieldnew' WHERE project_id='$project_id'";
+						$sql1 = "UPDATE research_field SET field_name = '$fieldnew' WHERE project_id='$project_id' AND field_name='$fieldold'";
 						if (mysqli_query($conn, $sql1)) {
 							echo "Field updated successfully", "<br>";
 						}
@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php echo $valididErr?>
 <br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <label for="p_id">Start Date:<label/><br>
+    <label for="p_id">Project ID:<label/><br>
 	<input type="number" id="p_id" name="project_id"><br>
     <label for="start_date">Start Date:<label/><br>
 	<input type="date" id="start_date" name="start_date"><br>

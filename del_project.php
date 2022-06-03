@@ -16,7 +16,7 @@ echo "<br>", "Connected successfully", "<br>";
 echo "<br>", "Please double check the number before you submit. Deletes are final and cannot be rolled back.", "<br>";
 
 
-$deleteErr = "";
+$deleteErr = $fieldErr = "";
 $delete_id = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -38,13 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	else {
 		$delete_id = ($_POST["delete_id"]);
-		$field = strtoupper($_POST["phone_nr"]);
+		$field = strtoupper($_POST["field"]);
 		$sql = "SELECT * FROM research_field WHERE project_id = '$delete_id' AND field_name = '$field'";
 		$result = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($result) == 1) {
 			$sql = "delete FROM research_field WHERE project_id = '$delete_id' AND field_name = '$field'";
 			if(mysqli_query($conn, $sql)){
-				echo "Phone number deleted successfully"."<br>";
+				echo "Field deleted successfully"."<br>";
 			}
 			else {
 				echo "Error: " . $sql . "<br>" . mysqli_error($conn);

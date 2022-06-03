@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
 			break;
 		case "trendingfield":
-			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
+			header("Location:http://localhost/elidekwebapp/view_trending_field.php");
 			break;
 		case "back2back":
 			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
 			break;
 		case "youngresearchers":
-			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
+			header("Location:http://localhost/elidekwebapp/view_young_researchers.php");
 			break;
 		case "corruptemployees":
 			header("Location:http://localhost/elidekwebapp/view_projects_filtered.php");
