@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			echo "New record created successfully", "<br>";
 			$last_id = $conn->insert_id;	
 			 
-			$field1 = $field2 = $field3 = ""
+			$field1 = $field2 = $field3 = "";
 			if (!empty($_POST["field1"])) {
 			   $field1 = strtoupper($_POST["field1"]);
 			   $sql = "INSERT INTO research_field (project_id, field_name)  VALUES ('$last_id','$field1')";

@@ -15,8 +15,8 @@ if (!$conn) {
 echo "<br>", "Connected successfully", "<br>";
 echo "<br>", "Please double check the number before you submit. Deletes are final and cannot be rolled back.", "<br>";
 
-
-$deleteErr = $fieldErr = "";
+$fieldErr = "";
+$deleteErr = "";
 $delete_id = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -38,13 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	else {
 		$delete_id = ($_POST["delete_id"]);
-		$field = strtoupper($_POST["field"]);
+		$field = strtoupper($_POST["phone_nr"]);
 		$sql = "SELECT * FROM research_field WHERE project_id = '$delete_id' AND field_name = '$field'";
 		$result = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($result) == 1) {
 			$sql = "delete FROM research_field WHERE project_id = '$delete_id' AND field_name = '$field'";
 			if(mysqli_query($conn, $sql)){
-				echo "Field deleted successfully"."<br>";
+				echo "Phone number deleted successfully"."<br>";
 			}
 			else {
 				echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -56,12 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 	
-	
 
-	
-
-
-	mysqli_close($conn);
 ?>
 <html>
 <body>
@@ -78,11 +73,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <input type="submit">
 </form><br>
 <br>
-
-<br>
 <form method="post">
 <input type="submit" name="backbutton" class="button" value="Back">
 </form>
+
+<?php
+$sql = "SELECT * FROM project";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  // output data of each row
+	while($row = mysqli_fetch_assoc($result)) {
+        echo "Project_id:".$row["project_id"]. " - start_date: " . $row["start_date"]. " - end_date: " . $row["end_date"]. " - funding: " . $row["funding"]. " - project_title: " . $row["project_title"]. " - project_description: " . $row["project_description"]. 
+		" - employee_id: " . $row["employee_id"].  " - program_id: " . $row["program_id"]. "- org_id: " . $row["org_id"]. "- researcher_id_sup: " . $row["researcher_id_sup"].  " - researcher_id_ev: " . $row["researcher_id_ev"]. 
+		" - evaluation: " . $row["evaluation"]. " - evaluation_date: " . $row["evaluation_date"]. "<br>";
+	}
+} 
+else {
+	echo "0 results";
+}
+mysqli_close($conn);
+?>
+
 
 
 </body>

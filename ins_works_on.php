@@ -21,13 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location:http://localhost/elidekwebapp/insert_main_menu.php");
 	}
 	if (empty($_POST["projectid"])) {
-        $proj_idErr = "* Project ID is required";
+        $proj_idErr = "Project ID is required";
         }
     else {
             $proj_id = $_POST["projectid"];
     }
     if (empty($_POST["researcherid"])) {
-        $res_idErr = "* Researcher ID is required";
+        $res_idErr = "Researcher ID is required";
 	}
 	else {
 		$res_id = $_POST["researcherid"];
@@ -63,10 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <label for="proj_id">Project ID:<label/><br>
 	<input type="number" id="proj_id" name="projectid">
-	<span class="error"><?php echo $proj_idErr;?></span><br>
+	<span class="error"><?php echo "* ".$proj_idErr;?></span><br>
     <label for="res_id">Researcher ID:<label/><br>
 	<input type="number" id="res_id" name="researcherid">
-	<span class="error"><?php echo $res_idErr;?></span><br>
+	<span class="error"><?php echo "* ".$res_idErr;?></span><br>
 <input type="submit">
 </form>
 <br>

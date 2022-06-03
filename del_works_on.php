@@ -29,16 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else{
 		$project_id = ($_POST["project_id"]);
 		$researcher_id = ($_POST["researcher_id"]);
+		$sql = "delete FROM works_on where project_id ='$project_id' and researcher_id = '$researcher_id'";
+		if(mysqli_query($conn, $sql)){
+			echo "Reasearcher working on Project deleted successfully"."<br>";
+		}
+		else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
 	}		
 }
-	
-	
-
-	$sql = "delete FROM works_on where project_id ='$project_id' and researcher_id = '$researcher_id'";
-	$result = mysqli_query($conn, $sql);
 
 
-	mysqli_close($conn);
 ?>
 <html>
 <body>
@@ -59,7 +60,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form method="post">
 <input type="submit" name="backbutton" class="button" value="Back">
 </form>
+<?php
+    $sql = "SELECT project_id, researcher_id FROM works_on";
+	$result = mysqli_query($conn, $sql);
 
+	if (mysqli_num_rows($result) > 0) {
+	  // output data of each row
+	  while($row = mysqli_fetch_assoc($result)) {
+		echo "Project id: " . $row["project_id"]. " - Researcher id: " . $row["researcher_id"]. "<br>";
+	  }
+	} else {
+	  echo "0 results";
+	}
 
+	mysqli_close($conn);
+?>
 </body>
 </html>
