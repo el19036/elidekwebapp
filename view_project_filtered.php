@@ -46,7 +46,7 @@ $show_researchers ="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidekwebapp/read_main_menu.php");
+		header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
 	}
 }
 

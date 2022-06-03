@@ -1,4 +1,6 @@
 <?php
+
+//comment
 $servername = "localhost";
 $socket = 3306;
 $dbname = "elidekdb";
@@ -12,34 +14,28 @@ if (!$conn) {
 
 echo "<br>", "Connected successfully", "<br>";
 
+$programnameErr = $deptErr = "";
+$program_name = $department = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
 		header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
 	}
 }
-echo "The top 3 field pairs are:", "<br>";
-$sql= 'SELECT LEAST(rf.field_name, s.field_name) as field1 , GREATEST(rf.field_name, s.field_name) as field2, COUNT(*) as count
-FROM research_field rf
-INNER JOIN
-(SELECT project_id, field_name
-FROM research_field
-WHERE project_id IN 
-(SELECT project_id
- FROM research_field
- GROUP BY project_id
- HAVING COUNT(*) >1)) s
-ON s.project_id = rf.project_id
-WHERE rf.field_name != s.field_name
-GROUP BY field1, field2
-ORDER BY COUNT(*) DESC
-LIMIT 3
-';
-$result = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
+	
+?>
+<html>
+<body>
+<h2>All Available ELIDEK Programs:</h2>
+<?php
+$sql = "SELECT program_id, program_name, department FROM program";
+	$result = mysqli_query($conn, $sql);
+
+	if (mysqli_num_rows($result) > 0) {
 	  // output data of each row
 	  while($row = mysqli_fetch_assoc($result)) {
-		echo "First field: " . $row["field1"]. " - Second field: " . $row["field2"]. " - 'Number of projects:" . $row["count"] , "<br>";
+		echo "Name: " . $row["program_name"]. " - Department: " . $row["department"]. "<br>";
 	  }
 	} else {
 	  echo "0 results";
@@ -47,10 +43,6 @@ if (mysqli_num_rows($result) > 0) {
 
 	mysqli_close($conn);
 ?>
-
-<html>
-<body>
-
 <br>
 <form method="post">
 <input type="submit" name="backbutton" class="button" value="Back">

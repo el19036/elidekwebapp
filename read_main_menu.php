@@ -36,6 +36,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 		case "Works_on":
 			header("Location:http://localhost/elidekwebapp/read_works_on.php");
 			break;
+		case "Research_field":
+			header("Location:http://localhost/elidekwebapp/read_research_field.php");
+			break;
 	}
 }
 ?>
@@ -60,6 +63,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	<label for="deliverable">Deliverable Product</label><br>
 	<input type="radio" id="works_on" name="entity" value="Works_on">
 	<label for="works_on">Researcher Working on a Project</label><br>
+	<input type="radio" id="res_field" name="entity" value="Research_field">
+	<label for="res_field">Research Field</label><br>
 	<input type="submit" value="Next"><br>
 	<span class="error"><?php echo $entityErr;?></span> <br>
 </form>

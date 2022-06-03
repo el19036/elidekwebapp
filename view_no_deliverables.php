@@ -14,7 +14,7 @@ echo "<br>", "Connected successfully", "<br>";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidekwebapp/queries_main_menu");
+		header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
 	}
 }
 echo "All researchers working on more than 5 projects with no deliverables are shown below:", "<br>";
@@ -33,7 +33,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
 	  // output data of each row
 	  while($row = mysqli_fetch_assoc($result)) {
-		echo "Researcher's first name: " . $row["fn"]. " - Researher's last name: " . $row["ln"]. " - 'Number of projects:" . $row["count"] , "<br>";
+		echo "Researcher's first name: " . $row["fn"]. " - Researher's last name: " . $row["ln"]. " - Number of projects:" . $row["count"] , "<br>";
 	  }
 	} else {
 	  echo "0 results";
