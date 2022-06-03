@@ -14,7 +14,7 @@ if (!$conn) {
 
 echo "<br>", "Connected successfully", "<br>";
 
-$project_idErr = $valididErr = "";
+$project_idErr = $valididErr = $fieldoldErr ="";
 
 $project_id = $start_date = $end_date = $funding = $title = $description 
 = $employee_id = $program_id = $org_id = $researcher_id_sup = 
@@ -38,6 +38,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (mysqli_num_rows($result) == 1) {
 		  // retrieve one row of data if program_id exists
 			$row = mysqli_fetch_assoc($result);
+			if(!empty($_POST["fieldnew"])){
+				$fieldnew = strtoupper($_POST["fieldnew"]);
+				if (!empty($_POST["fieldold"])) {
+					//update
+					$fieldold = strtoupper($_POST["fieldold"]);
+					$sql1 = "SELECT * FROM research_field WHERE project_id='$project_id' AND field_name='$fieldold'";
+					$result1 = mysqli_query($conn, $sql1);
+					if (mysqli_num_rows($result1) == 1) {
+						$sql1 = "UPDATE research_field SET field_name = '$fieldnew' WHERE project_id='$project_id'";
+						if (mysqli_query($conn, $sql1)) {
+							echo "Field updated successfully", "<br>";
+						}
+						else {
+							echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
+						}
+					}
+					else {
+						$fieldoldErr = "Field and Project don't match";
+					}
+				}
+				else {
+					//insert
+					$sql1 = "INSERT INTO research_field (project_id, field_name)  VALUES ('$project_id','$fieldnew')";
+					if (mysqli_query($conn, $sql1)) {
+						echo "Field added successfully", "<br>";
+					}
+					else {
+						echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
+					}
+				}
+			}
+			
             if (!empty($_POST["start_date"])) {
 				$start_date = date_create($_POST["start_date"]);
 				$start_date = date_format($start_date,"Y/m/d");
@@ -102,7 +134,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             else{$eval_date = $row["evaluation_date"];
             }
 
-
 			$sql = "UPDATE project 
                     SET project_id = '$project_id', start_date = '$start_date', end_date = '$end_date', funding = '$funding', 
                     project_title = '$title', project_description = '$description', employee_id = '$employee_id', 
@@ -156,6 +187,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="number" id="evaluation" name="evaluation" min="1" max="100"><br>
 	<label for="ev_date">Evaluation Date:<label/><br>
 	<input type="date" id="ev_date" name="eval_date"><br>
+	<label for="field1">Old Project's Field (leave blank to add new field):<label/><br>
+	<input type="text"id="field1" name="fieldold">
+	<span class="error"><?php echo $fieldoldErr?></span><br>
+	<label for="field2">New Project's Field:<label/><br>
+	<input type="text"id="field2" name="fieldnew"><br>
 	
 <br>
 <input type="submit">

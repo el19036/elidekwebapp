@@ -33,6 +33,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		  // retrieve one row of data if org_id exists
 			$row = mysqli_fetch_assoc($result);
 			
+			if (!empty($_POST["phone1"])) {
+				$phone1 = $_POST["phone1"];
+				$sql2 = "INSERT INTO org_phone (org_id, phone_number)  VALUES ('$org_id','$phone1')";
+				if (mysqli_query($conn, $sql2)) {
+					echo "Phone added successfully", "<br>";
+				}
+				else {
+					echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+				}				
+			}
+			
 			$org_name = $row["org_name"];
 			$city = $row["city"];
 			$address = $row["address"];
@@ -132,25 +143,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="number"id="private_funds" name="private_funds"><br>
 	<label for="equity">Equity:<label/><br>
 	<input type="number"id="equity" name="equity"><br>
-	<label for="phone1">Phone_number 1:<label/><br>
+	<label for="phone1">Phone_number:<label/><br>
 	<input type="number"id="phone1" name="phone1" min="1" max="9999999999"><br>
-	<label for="phone2">Phone_number 2:<label/><br>
-	<input type="number"id="phone2" name="phone2" min="1" max="9999999999"><br>
-	<label for="phone3">Phone_number 3:<label/><br>
-	<input type="number"id="phone3" name="phone3" min="1" max="9999999999"><br>
-	<label for="phone4">Phone_number 4:<label/><br>
-	<input type="number"id="phone4" name="phone4" min="1" max="9999999999"><br>
-	<label for="phone5">Phone_number 5:<label/><br>
-	<input type="number"id="phone5" name="phone5" min="1" max="9999999999"><br>
-	<label for="phone6">Phone_number 6:<label/><br>
-	<input type="number"id="phone6" name="phone6" min="1" max="9999999999"><br>
-	<label for="phone7">Phone_number 7:<label/><br>
-	<input type="number"id="phone7" name="phone7" min="1" max="9999999999"><br>
-	<label for="phone8">Phone_number 8:<label/><br>
-	<input type="number"id="phone8" name="phone8" min="1" max="9999999999"><br>
-	<label for="phone9">Phone_number 9:<label/><br>
-	<input type="number"id="phone9" name="phone9" min="1" max="9999999999"><br>
-
+	
+	
 <br>
 <input type="submit">
 </form><br><br>
