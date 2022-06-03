@@ -590,3 +590,22 @@ insert into org_phone (org_id, phone_number) values (30, 7418445624),(30, 751618
 ,(16, 1608357081),(3, 5638576909),(20, 2718837665),(14, 4556879981),(9, 3442261704),(12, 2961969125),(10, 5244548926)
 ,(28, 1280387573),(12, 5959043084),(19, 2185611831),(19, 9928970588),(20, 8806996121),(8, 5414214757),(7, 9023465653)
 ,(14, 7488718870),(8, 4960956820),(8, 9198527848),(19, 3186270557),(20, 8375224029);
+
+DROP VIEW IF EXISTS researchersprojects;
+CREATE VIEW researchersprojects AS
+select r.researcher_id ,r.first_name, r.last_name,p.project_id
+FROM researcher r 
+INNER JOIN works_on w
+ON r.researcher_id = w.researcher_id
+INNER JOIN project p 
+ON p.project_id = w.project_id
+ORDER BY r.researcher_id;
+
+DROP VIEW IF EXISTS organizationsresearchers;
+CREATE VIEW organizationsresearchers AS
+SELECT r.researcher_id, r.first_name, r.last_name, r.org_id
+FROM researcher r
+INNER JOIN
+organization org
+ON r.org_id = org.org_id
+ORDER BY r.org_id ASC;
