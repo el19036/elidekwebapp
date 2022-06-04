@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
 	}
 }
-echo "All researchers working on more than 5 projects with no deliverables are shown below:", "<br>";
+echo "<h3>"."All researchers working on more than 5 projects with no deliverables are shown below:"."</h3>";
 $sql= 'SELECT r.first_name as fn, r.last_name as ln, COUNT(*) as count
 FROM researcher r
 INNER JOIN works_on w
@@ -43,6 +43,9 @@ if (mysqli_num_rows($result) > 0) {
 ?>
 
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <br>

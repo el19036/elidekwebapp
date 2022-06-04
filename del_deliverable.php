@@ -41,6 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

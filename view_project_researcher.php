@@ -33,6 +33,9 @@ if (mysqli_num_rows($result2) > 0) {
 ?>
 
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <br>

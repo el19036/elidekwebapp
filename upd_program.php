@@ -36,10 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (mysqli_num_rows($result) == 1) {
 		  // retrieve one row of data if program_id exists
 			$row = mysqli_fetch_assoc($result);
+			
+			$program_name = $row["program_name"];
 			$department = $row["department"];
 			
-			$program_name = $_POST["programname"];
-		
+			if (!empty($_POST["programname"])) {
+				$program_name = $_POST["programname"];
+			}
 			if (!empty($_POST["programdept"])) {
 				$department = $_POST["programdept"];
 			}
@@ -61,6 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <h1> Update a program </h1>

@@ -13,6 +13,9 @@ if (!$conn) {
 echo "<br>", "Connected successfully", "<br>";
 ?>
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <h3> Filter By: </h3>

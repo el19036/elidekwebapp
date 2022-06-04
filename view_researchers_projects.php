@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	echo "<h2>Pick a Researcher</h2>";
 	
-	$sql = "SELECT DISTINCT r.researcher_id as researcher_id 
+	$sql = "SELECT DISTINCT r.researcher_id as researcher_id , r.first_name as fname, r.last_name as lname
 			FROM researcher r
 			INNER JOIN works_on w
 			ON r.researcher_id = w.researcher_id
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  // output data of each row
 	  while($row = mysqli_fetch_assoc($result)) {
 		$url = "http://localhost/elidekwebapp/view_selected_projects.php?name=" . $row["researcher_id"];	
-		echo "<a href=$url>Researcher: </a>" . $row["researcher_id"]. "<br>";
+		echo "<a href=$url>Researcher ID: </a>" . $row["researcher_id"]. " - First Name: " . $row["fname"]. " - Last Name: " . $row["lname"]."<br>";
 	  }
 	} else {
 	  echo "0 results";
@@ -40,6 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	mysqli_close($conn);
 ?>
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <br>

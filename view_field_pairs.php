@@ -39,7 +39,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
 	  // output data of each row
 	  while($row = mysqli_fetch_assoc($result)) {
-		echo "First field: " . $row["field1"]. " - Second field: " . $row["field2"]. " - 'Number of projects:" . $row["count"] , "<br>";
+		echo "First field: " . $row["field1"]. " - Second field: " . $row["field2"]. " - Number of projects:" . $row["count"] , "<br>";
 	  }
 	} else {
 	  echo "0 results";
@@ -49,6 +49,9 @@ if (mysqli_num_rows($result) > 0) {
 ?>
 
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <br>
