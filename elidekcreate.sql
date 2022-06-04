@@ -108,38 +108,6 @@ constraint pk_phone primary key (org_id, phone_number)
   CONSTRAINT pk_delivery PRIMARY KEY (project_id,deliverable_id)
   );
 
-DELIMITER $
-CREATE TRIGGER evaluator_doesnt_Work_On_INSERT BEFORE INSERT ON works_on 
-FOR EACH ROW
-BEGIN
-    IF ((SELECT COUNT(*) FROM project WHERE project_id = new.project_id AND researcher_id_ev = new.researcher_id) > 0) THEN 
-    SIGNAL SQLSTATE '45000'
-           SET MESSAGE_TEXT = 'check constraint on works_on failed - A researcher cannot evaluate and work on the same project';
-    END IF;
-END$   
-DELIMITER ;
-
-DELIMITER $
-CREATE TRIGGER evaluator_doesnt_Work_On_UPDATE BEFORE UPDATE ON works_on 
-FOR EACH ROW
-BEGIN
-    IF ((SELECT COUNT(*) FROM project WHERE project_id = new.project_id AND researcher_id_ev = new.researcher_id) > 0) THEN 
-    SIGNAL SQLSTATE '45000'
-           SET MESSAGE_TEXT = 'check constraint on works_on failed - A researcher cannot evaluate and work on the same project';
-    END IF;
-END$   
-DELIMITER ;
-
-DELIMITER $
-CREATE TRIGGER evaluator_doesnt_Work_UPDATE BEFORE UPDATE ON project 
-FOR EACH ROW
-BEGIN
-    IF ((SELECT COUNT(*) FROM works_on WHERE project_id = new.project_id AND researcher_id = new.researcher_id_ev) > 0) THEN 
-    SIGNAL SQLSTATE '45000'
-           SET MESSAGE_TEXT = 'check constraint on project failed - A researcher cannot evaluate and work on the same project';
-    END IF;
-END$   
-DELIMITER ;
 
 DELIMITER $
 CREATE TRIGGER no_insider_evaluators_ins BEFORE INSERT ON project 
@@ -167,6 +135,19 @@ DELIMITER ;
 
 DELIMITER $
 CREATE TRIGGER researchers_work_on_their_orgs_projects BEFORE INSERT ON works_on 
+FOR EACH ROW
+BEGIN
+    IF ((SELECT COUNT(*) FROM project p join researcher r
+						 on p.org_id=r.org_id
+						 WHERE p.project_id = new.project_id AND r.researcher_id = new.researcher_id) <> 1) THEN 
+    SIGNAL SQLSTATE '45000'
+           SET MESSAGE_TEXT = 'check constraint on_works on failed - A researcher is loyal and cannot work on foreign projects';
+    END IF;
+END$   
+DELIMITER ; 
+
+DELIMITER $
+CREATE TRIGGER researchers_work_on_their_orgs_projects_upd BEFORE UPDATE ON works_on 
 FOR EACH ROW
 BEGIN
     IF ((SELECT COUNT(*) FROM project p join researcher r
@@ -218,6 +199,18 @@ DELIMITER ;
 
 DELIMITER $
 CREATE TRIGGER deliver_on_time before insert ON deliverable
+FOR EACH ROW
+BEGIN
+IF ((SELECT COUNT(*) FROM project WHERE project_id = new.project_id AND 
+(new.delivery_date < start_date OR new.delivery_date > end_date )) > 0) THEN 
+    SIGNAL SQLSTATE '45000'
+           SET MESSAGE_TEXT = 'check constraint on deliverable failed - This is not Back to the Future';
+    END IF;
+END$   
+DELIMITER ;
+
+DELIMITER $
+CREATE TRIGGER deliver_on_time_upd before update ON deliverable
 FOR EACH ROW
 BEGIN
 IF ((SELECT COUNT(*) FROM project WHERE project_id = new.project_id AND 
@@ -609,3 +602,141 @@ INNER JOIN
 organization org
 ON r.org_id = org.org_id
 ORDER BY r.org_id ASC;
+
+UPDATE project set project_title = 'metus aenean fermentum' WHERE project_id=1;
+UPDATE project set project_title = 'in' WHERE project_id=2;
+UPDATE project set project_title = 'habitasse' WHERE project_id=3;
+UPDATE project set project_title = 'at nunc commodo' WHERE project_id=4;
+UPDATE project set project_title = 'penatibus et magnis' WHERE project_id=5;
+UPDATE project set project_title = 'enim' WHERE project_id=6;
+UPDATE project set project_title = 'amet turpis' WHERE project_id=7;
+UPDATE project set project_title = 'dapibus at' WHERE project_id=8;
+UPDATE project set project_title = 'luctus nec' WHERE project_id=9;
+UPDATE project set project_title = 'sit amet nunc' WHERE project_id=10;
+UPDATE project set project_title = 'primis' WHERE project_id=11;
+UPDATE project set project_title = 'praesent blandit nam' WHERE project_id=12;
+UPDATE project set project_title = 'amet cursus id' WHERE project_id=13;
+UPDATE project set project_title = 'vitae mattis' WHERE project_id=14;
+UPDATE project set project_title = 'volutpat eleifend' WHERE project_id=15;
+UPDATE project set project_title = 'felis eu' WHERE project_id=16;
+UPDATE project set project_title = 'morbi quis' WHERE project_id=17;
+UPDATE project set project_title = 'imperdiet nullam orci' WHERE project_id=18;
+UPDATE project set project_title = 'id' WHERE project_id=19;
+UPDATE project set project_title = 'lacinia' WHERE project_id=20;
+UPDATE project set project_title = 'rhoncus aliquam' WHERE project_id=21;
+UPDATE project set project_title = 'turpis enim blandit' WHERE project_id=22;
+UPDATE project set project_title = 'ultrices posuere cubilia' WHERE project_id=23;
+UPDATE project set project_title = 'amet' WHERE project_id=24;
+UPDATE project set project_title = 'condimentum' WHERE project_id=25;
+UPDATE project set project_title = 'cursus' WHERE project_id=26;
+UPDATE project set project_title = 'bibendum morbi non' WHERE project_id=27;
+UPDATE project set project_title = 'eu massa donec' WHERE project_id=28;
+UPDATE project set project_title = 'nunc viverra' WHERE project_id=29;
+UPDATE project set project_title = 'vestibulum aliquet' WHERE project_id=30;
+UPDATE project set project_title = 'pretium iaculis' WHERE project_id=31;
+UPDATE project set project_title = 'enim' WHERE project_id=32;
+UPDATE project set project_title = 'egestas' WHERE project_id=33;
+UPDATE project set project_title = 'lacinia sapien quis' WHERE project_id=34;
+UPDATE project set project_title = 'pede posuere' WHERE project_id=35;
+UPDATE project set project_title = 'nulla tempus vivamus' WHERE project_id=36;
+UPDATE project set project_title = 'quis' WHERE project_id=37;
+UPDATE project set project_title = 'aliquam augue' WHERE project_id=38;
+UPDATE project set project_title = 'vel accumsan' WHERE project_id=39;
+UPDATE project set project_title = 'ullamcorper augue' WHERE project_id=40;
+UPDATE project set project_title = 'non' WHERE project_id=41;
+UPDATE project set project_title = 'pretium quis' WHERE project_id=42;
+UPDATE project set project_title = 'magna' WHERE project_id=43;
+UPDATE project set project_title = 'eu magna vulputate' WHERE project_id=44;
+UPDATE project set project_title = 'scelerisque' WHERE project_id=45;
+UPDATE project set project_title = 'id luctus nec' WHERE project_id=46;
+UPDATE project set project_title = 'lacus morbi' WHERE project_id=47;
+UPDATE project set project_title = 'donec semper sapien' WHERE project_id=48;
+UPDATE project set project_title = 'nam congue risus' WHERE project_id=49;
+UPDATE project set project_title = 'nunc vestibulum' WHERE project_id=50;
+UPDATE project set project_title = 'parturient montes nascetur' WHERE project_id=51;
+UPDATE project set project_title = 'vel dapibus at' WHERE project_id=52;
+UPDATE project set project_title = 'eu felis fusce' WHERE project_id=53;
+UPDATE project set project_title = 'risus dapibus augue' WHERE project_id=54;
+UPDATE project set project_title = 'vestibulum ac est' WHERE project_id=55;
+
+UPDATE project set project_description = 'phasellus sit amet erat nulla tempus vivamus in felis eu sapien' WHERE project_id=1;
+UPDATE project set project_description = 'eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis' WHERE project_id=2;
+UPDATE project set project_description = 'convallis nulla neque libero convallis eget eleifend luctus ultricies eu' WHERE project_id=3;
+UPDATE project set project_description = 'nulla facilisi cras non velit nec nisi vulputate nonummy' WHERE project_id=4;
+UPDATE project set project_description = 'libero nam dui proin leo odio porttitor id consequat in consequat' WHERE project_id=5;
+UPDATE project set project_description = 'pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula' WHERE project_id=6;
+UPDATE project set project_description = 'magna ac consequat metus sapien ut nunc vestibulum' WHERE project_id=7;
+UPDATE project set project_description = 'adipiscing molestie hendrerit at vulputate vitae nisl aenean' WHERE project_id=8;
+UPDATE project set project_description = 'molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna' WHERE project_id=9;
+UPDATE project set project_description = 'non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum' WHERE project_id=10;
+UPDATE project set project_description = 'in hac habitasse platea dictumst maecenas ut massa' WHERE project_id=11;
+UPDATE project set project_description = 'morbi vestibulum velit id pretium iaculis diam' WHERE project_id=12;
+UPDATE project set project_description = 'bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt' WHERE project_id=13;
+UPDATE project set project_description = 'vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus' WHERE project_id=14;
+UPDATE project set project_description = 'pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie' WHERE project_id=15;
+UPDATE project set project_description = 'cubilia curae mauris viverra diam vitae quam' WHERE project_id=16;
+UPDATE project set project_description = 'at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla' WHERE project_id=17;
+UPDATE project set project_description = 'ridiculus mus etiam vel augue vestibulum' WHERE project_id=18;
+UPDATE project set project_description = 'convallis duis consequat dui nec' WHERE project_id=19;
+UPDATE project set project_description = 'rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa' WHERE project_id=20;
+UPDATE project set project_description = 'odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est' WHERE project_id=21;
+UPDATE project set project_description = 'neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum' WHERE project_id=22;
+UPDATE project set project_description = 'non mi integer ac neque duis bibendum' WHERE project_id=23;
+UPDATE project set project_description = 'justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus' WHERE project_id=24;
+UPDATE project set project_description = 'consequat in consequat ut nulla sed' WHERE project_id=25;
+UPDATE project set project_description = 'primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus' WHERE project_id=26;
+UPDATE project set project_description = 'nibh quisque id justo sit amet sapien' WHERE project_id=27;
+UPDATE project set project_description = 'penatibus et magnis dis parturient' WHERE project_id=28;
+UPDATE project set project_description = 'suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam' WHERE project_id=29;
+UPDATE project set project_description = 'lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris' WHERE project_id=30;
+UPDATE project set project_description = 'vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum' WHERE project_id=31;
+UPDATE project set project_description = 'dis parturient montes nascetur ridiculus mus' WHERE project_id=32;
+UPDATE project set project_description = 'justo in hac habitasse' WHERE project_id=33;
+UPDATE project set project_description = 'posuere cubilia curae duis faucibus accumsan odio curabitur' WHERE project_id=34;
+UPDATE project set project_description = 'vestibulum sagittis sapien cum sociis natoque' WHERE project_id=35;
+UPDATE project set project_description = 'lobortis convallis tortor risus dapibus augue' WHERE project_id=36;
+UPDATE project set project_description = 'elit proin interdum mauris non ligula pellentesque ultrices phasellus' WHERE project_id=37;
+UPDATE project set project_description = 'nulla nisl nunc nisl duis bibendum felis sed interdum venenatis' WHERE project_id=38;
+UPDATE project set project_description = 'iaculis diam erat fermentum justo nec' WHERE project_id=39;
+UPDATE project set project_description = 'natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum' WHERE project_id=40;
+UPDATE project set project_description = 'massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras' WHERE project_id=41;
+UPDATE project set project_description = 'nullam orci pede venenatis non sodales sed' WHERE project_id=42;
+UPDATE project set project_description = 'amet sem fusce consequat nulla' WHERE project_id=43;
+UPDATE project set project_description = 'nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac' WHERE project_id=44;
+UPDATE project set project_description = 'augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse' WHERE project_id=45;
+UPDATE project set project_description = 'nulla ac enim in tempor' WHERE project_id=46;
+UPDATE project set project_description = 'eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla' WHERE project_id=47;
+UPDATE project set project_description = 'vulputate nonummy maecenas tincidunt lacus at' WHERE project_id=48;
+UPDATE project set project_description = 'vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent' WHERE project_id=49;
+UPDATE project set project_description = 'posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis' WHERE project_id=50;
+UPDATE project set project_description = 'dapibus duis at velit eu est congue elementum in' WHERE project_id=51;
+UPDATE project set project_description = 'erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc' WHERE project_id=52;
+UPDATE project set project_description = 'vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum' WHERE project_id=53;
+UPDATE project set project_description = 'duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend' WHERE project_id=54;
+UPDATE project set project_description = 'et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin' WHERE project_id=55;
+
+UPDATE deliverable set deliverable_title = 'pede venenatis non sodales' WHERE deliverable_id=1;
+UPDATE deliverable set deliverable_title = 'eget congue eget semper' WHERE deliverable_id=2;
+UPDATE deliverable set deliverable_title = 'metus' WHERE deliverable_id=3;
+UPDATE deliverable set deliverable_title = 'fusce congue diam' WHERE deliverable_id=4;
+UPDATE deliverable set deliverable_title = 'interdum eu' WHERE deliverable_id=5;
+UPDATE deliverable set deliverable_title = 'risus semper' WHERE deliverable_id=6;
+UPDATE deliverable set deliverable_title = 'adipiscing lorem' WHERE deliverable_id=7;
+UPDATE deliverable set deliverable_title = 'iaculis justo in' WHERE deliverable_id=8;
+UPDATE deliverable set deliverable_title = 'lacinia nisi' WHERE deliverable_id=9;
+UPDATE deliverable set deliverable_title = 'pretium quis lectus suspendisse' WHERE deliverable_id=10;
+UPDATE deliverable set deliverable_title = 'non mi integer ac' WHERE deliverable_id=11;
+UPDATE deliverable set deliverable_title = 'amet consectetuer' WHERE deliverable_id=12;
+
+UPDATE deliverable set deliverable_summary = 'pede malesuada in imperdiet et commodo vulputate justo in blandit' WHERE deliverable_id=1;
+UPDATE deliverable set deliverable_summary = 'ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin' WHERE deliverable_id=2;
+UPDATE deliverable set deliverable_summary = 'odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus' WHERE deliverable_id=3;
+UPDATE deliverable set deliverable_summary = 'nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac' WHERE deliverable_id=4;
+UPDATE deliverable set deliverable_summary = 'leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue vel' WHERE deliverable_id=5;
+UPDATE deliverable set deliverable_summary = 'tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus' WHERE deliverable_id=6;
+UPDATE deliverable set deliverable_summary = 'adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue' WHERE deliverable_id=7;
+UPDATE deliverable set deliverable_summary = 'eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus' WHERE deliverable_id=8;
+UPDATE deliverable set deliverable_summary = 'montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem' WHERE deliverable_id=9;
+UPDATE deliverable set deliverable_summary = 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam' WHERE deliverable_id=10;
+UPDATE deliverable set deliverable_summary = 'hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel' WHERE deliverable_id=11;
+UPDATE deliverable set deliverable_summary = 'libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti' WHERE deliverable_id=12;

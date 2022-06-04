@@ -23,12 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
 		header("Location:http://localhost/elidekwebapp/update_main_menu.php");
 	}
-	else if (empty($_POST["programid"])) {
+	if (empty($_POST["programid"])) {
 		$programidErr = "Program ID is required";
 	}
-	else if (empty($_POST["programname"])) {
-		$programnameErr = "Program name is required";
-	}
+	
 	else {
 		$programid = $_POST["programid"];
 		$sql = "SELECT program_name, department FROM program WHERE program_id='$programid'";
@@ -73,8 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="number" id="p_id" name="programid">
 	<span class="error"><?php echo "* ", $programidErr;?></span><br>
 	<label for="p_name">Program Name:<label/><br>
-	<input type="text" id="p_name" name="programname">
-	<span class="error"><?php echo "* " . $programnameErr;?></span><br>
+	<input type="text" id="p_name" name="programname"><br>
 	<label for="p_dept">Program Department:<label/><br>
 	<input type="text" id="p_dept" name="programdept"><br>
 <br>

@@ -134,9 +134,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="number"id="funding" name="funding" min="100000" max="1000000">
 	<span class="error"><?php echo "* ".$fundingErr?></span><br>
 	<label for="project_title">Project's title:<label/><br>
-	<input type="text" id="title" name="title"><br>
+	<input type="text" id="title" name="title" maxlength="45"><br>
 	<label for="description">Description:<label/><br>
-	<input type="text" id="description" name="description" size ="60"><br>
+	<input type="text" id="description" name="description" size="60" maxlength ="255"><br>
 	<label for="employee_id">Elidek employee's id:<label/><br>
 	<input type="number" id="employee_id" name="employee_id">
 	<span class="error"><?php echo "* ".$employee_idErr?></span><br>

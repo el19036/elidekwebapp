@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			   $equity = $_POST["equity"];
 			}
 			if ($org_type == "University") {
-				$private_funds = $equity === NULL;
+				$private_funds = $equity = NULL;
 			}
 			else if ($org_type == "Firm"){
 				$private_funds = $ministry_funds = NULL;

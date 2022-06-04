@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<label for="org_name">Organization's Name:<label/><br>
-	<input type="text" id="org_name" name="org_name">
+	<input type="text" id="org_name" maxlength="60" name="org_name">
 	<span class="error"><?php echo "* ".$org_nameErr;?></span><br>
 	<label for="city">City:<label/><br>
 	<input type="text" id="city" name="city"><br>

@@ -79,13 +79,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="number" id="proj_id" name="projectid">
 	<span class="error"><?php echo "* ".$proj_idErr;?></span><br>
 	<label for="del_title">Deliverable Title:<label/><br>
-	<input type="text" id="del_title" name="deliverabletitle">
+	<input type="text" id="del_title" maxlength="45" name="deliverabletitle">
 	<span class="error"><?php echo "* ".$del_titleErr;?></span><br>
     <label for="del_date">Date:</label>
     <input type="date" id="del_date" name ="deliverabledate">
     <span class="error"><?php echo "* ".$del_dateErr;?></span><br>
 	<label for="del_summary">Deliverable Summary:<label/><br>
-	<input type="text" id="del_summary" name="deliverablesummary" size ="60">
+	<input type="text" id="del_summary" maxlenght="225" size="60" name="deliverablesummary" size ="60">
 <br>
 <input type="submit">
 </form><br>

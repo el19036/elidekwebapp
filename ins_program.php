@@ -60,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<label for="p_name">Program Name:<label/><br>
-	<input type="text" id="p_name" name="programname">
+	<input type="text" id="p_name" maxlength="90" name="programname">
 	<span class="error"><?php echo "* ".$programnameErr;?></span><br>
 	<label for="p_dept">Program Department:<label/><br>
-	<input type="text" id="p_dept" name="programdept">
+	<input type="text" id="p_dept" maxlength="90" name="programdept">
 <br>
 <input type="submit">
 </form><br>

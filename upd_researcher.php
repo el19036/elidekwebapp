@@ -25,15 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	elseif (empty($_POST["researcherid"])) {
 		$researcheridErr = "Researcher ID is required";
 	}
-	elseif (empty($_POST["researcherfirstname"])) {
-		$firstnameErr = "First name is required";
-	}
-	elseif (empty($_POST["researcherlastname"])) {
-		$lastnameErr = "Last name is required";
-	}
-	elseif (empty($_POST["sex"])) {
-		$sexErr = "Sex required";
-	}
 	else {
 		$researcherid = $_POST["researcherid"];
 		$sql = "SELECT date_of_birth, date_hired FROM researcher WHERE researcher_id='$researcherid'";
@@ -87,12 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="number" id="res_id" name="researcherid">
 	<span class="error"><?php echo "* ", $researcheridErr;?></span><br>	
 	<label for="fname">Research First Name:<label/><br>
-	<input type="text" id="fname" name="researcherfirstname">
-	<span class="error"><?php echo "* ".$firstnameErr;?></span><br>
+	<input type="text" id="fname" name="researcherfirstname"><br>
 	<label for="lname">Researcher Last Name:<label/><br>
-	<input type="text" id="lname" name="researcherlastname">
-	<span class="error"><?php echo "* ".$lastnameErr;?></span><br>
-	Sex	:<span class="error"><?php echo "* ".$sexErr;?></span><br>
+	<input type="text" id="lname" name="researcherlastname"><br>
+	Sex	:<br>
 	<input type="radio" id="male" name="sex" value="male">
 	<label for="male">Male<label/>
 	<input type="radio" id="female" name="sex" value="female">
