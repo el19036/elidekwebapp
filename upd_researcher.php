@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	else {
 		$researcherid = $_POST["researcherid"];
-		$sql = "SELECT date_of_birth, date_hired FROM researcher WHERE researcher_id='$researcherid'";
+		$sql = "SELECT * FROM researcher WHERE researcher_id='$researcherid'";
 		
 		$result = mysqli_query($conn, $sql);
 		
@@ -36,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$row = mysqli_fetch_assoc($result);
 			$birthday = $row["date_of_birth"];
 			$datehired = $row["date_hired"];
-			
-			$firstname = $_POST["researcherfirstname"];
-			$lastname = $_POST["researcherlastname"];
-			$sex = $_POST["sex"];
+			$firstname = $row["first_name"];
+			$researcherlastname = $row["last_name"];
+			$sex= $row["sex"];
+			$org_id = $row["org_id"];
 			
 			if (!empty($_POST["dateofbirth"])) {
 				$birthday = date_create($_POST["dateofbirth"]);
@@ -49,9 +49,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$datehired = date_create($_POST["datehired"]);
 				$datehired = date_format($datehired,"Y/m/d");
 			}
-		
+			if (!empty($_POST["researcherfirstname"])) {
+				$firstname = $_POST["researcherfirstname"];
+			}
+			if (!empty($_POST["researcherlastname"])) {
+				$lastname = $_POST["researcherlastname"];
+			}
+			if (!empty($_POST["sex"])) {
+				$sex = $_POST["sex"];
+			}
+			if (!empty($_POST["orgid"])) {
+				$org_id = $_POST["orgid"];
+			}
+
 			$sql = "UPDATE researcher 
-					SET first_name = '$firstname', last_name = '$lastname', sex = '$sex', date_of_birth = '$birthday', date_hired = '$datehired'
+					SET first_name = '$firstname', last_name = '$lastname', sex = '$sex', date_of_birth = '$birthday', date_hired = '$datehired', org_id=$org_id
 					WHERE researcher_id = '$researcherid'";
 			//$sql = mysqli_real_escape_string($conn, $sql);
 			if (mysqli_query($conn, $sql)) {
@@ -95,10 +107,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="date" id="birthday" name="dateofbirth"><br>
 	<label for="hiredate">Hired on:<label/><br>
 	<input type="date" id="hiredate" name="datehired"><br>
-<!--	<label for="organization">Organization ID:<label/><br>
+    <label for="organization">Organization ID:<label/><br>
 	<input type="number" id="organization" name="orgid">
-	<span class="error"><?php echo "* ".$orgidErr;?></span><br>
-	-->
+
 <br>
 <input type="submit">
 </form><br><br>
