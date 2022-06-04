@@ -39,11 +39,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 		case "Research_field":
 			header("Location:http://localhost/elidekwebapp/read_research_field.php");
 			break;
+		case "Org_phone":
+			header("Location:http://localhost/elidekwebapp/read_org_phone.php");
+			break;	
 	}
 }
 ?>
 
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <h1>What do you want to read?</h1>
@@ -65,6 +71,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	<label for="works_on">Researcher Working on a Project</label><br>
 	<input type="radio" id="res_field" name="entity" value="Research_field">
 	<label for="res_field">Research Field</label><br>
+	<input type="radio" id="org_phone" name="entity" value="Org_phone">
+	<label for="org_phone">Organization's phone</label><br>
 	<input type="submit" value="Next"><br>
 	<span class="error"><?php echo $entityErr;?></span> <br>
 </form>

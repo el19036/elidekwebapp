@@ -37,6 +37,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 ?>
 
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <h1>What do you want to update?</h1>

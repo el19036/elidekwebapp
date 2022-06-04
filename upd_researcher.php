@@ -25,18 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	elseif (empty($_POST["researcherid"])) {
 		$researcheridErr = "Researcher ID is required";
 	}
-	elseif (empty($_POST["researcherfirstname"])) {
-		$firstnameErr = "First name is required";
-	}
-	elseif (empty($_POST["researcherlastname"])) {
-		$lastnameErr = "Last name is required";
-	}
-	elseif (empty($_POST["sex"])) {
-		$sexErr = "Sex required";
-	}
 	else {
 		$researcherid = $_POST["researcherid"];
-		$sql = "SELECT date_of_birth, date_hired FROM researcher WHERE researcher_id='$researcherid'";
+		$sql = "SELECT * FROM researcher WHERE researcher_id='$researcherid'";
 		
 		$result = mysqli_query($conn, $sql);
 		
@@ -45,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$row = mysqli_fetch_assoc($result);
 			$birthday = $row["date_of_birth"];
 			$datehired = $row["date_hired"];
-			
-			$firstname = $_POST["researcherfirstname"];
-			$lastname = $_POST["researcherlastname"];
-			$sex = $_POST["sex"];
+			$firstname = $row["first_name"];
+			$researcherlastname = $row["last_name"];
+			$sex= $row["sex"];
+			$org_id = $row["org_id"];
 			
 			if (!empty($_POST["dateofbirth"])) {
 				$birthday = date_create($_POST["dateofbirth"]);
@@ -58,9 +49,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$datehired = date_create($_POST["datehired"]);
 				$datehired = date_format($datehired,"Y/m/d");
 			}
-		
+			if (!empty($_POST["researcherfirstname"])) {
+				$firstname = $_POST["researcherfirstname"];
+			}
+			if (!empty($_POST["researcherlastname"])) {
+				$lastname = $_POST["researcherlastname"];
+			}
+			if (!empty($_POST["sex"])) {
+				$sex = $_POST["sex"];
+			}
+			if (!empty($_POST["orgid"])) {
+				$org_id = $_POST["orgid"];
+			}
+
 			$sql = "UPDATE researcher 
-					SET first_name = '$firstname', last_name = '$lastname', sex = '$sex', date_of_birth = '$birthday', date_hired = '$datehired'
+					SET first_name = '$firstname', last_name = '$lastname', sex = '$sex', date_of_birth = '$birthday', date_hired = '$datehired', org_id=$org_id
 					WHERE researcher_id = '$researcherid'";
 			//$sql = mysqli_real_escape_string($conn, $sql);
 			if (mysqli_query($conn, $sql)) {
@@ -77,6 +80,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <h1> Update a researcher's profile </h1>
@@ -87,12 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="number" id="res_id" name="researcherid">
 	<span class="error"><?php echo "* ", $researcheridErr;?></span><br>	
 	<label for="fname">Research First Name:<label/><br>
-	<input type="text" id="fname" name="researcherfirstname">
-	<span class="error"><?php echo "* ".$firstnameErr;?></span><br>
+	<input type="text" id="fname" name="researcherfirstname"><br>
 	<label for="lname">Researcher Last Name:<label/><br>
-	<input type="text" id="lname" name="researcherlastname">
-	<span class="error"><?php echo "* ".$lastnameErr;?></span><br>
-	Sex	:<span class="error"><?php echo "* ".$sexErr;?></span><br>
+	<input type="text" id="lname" name="researcherlastname"><br>
+	Sex	:<br>
 	<input type="radio" id="male" name="sex" value="male">
 	<label for="male">Male<label/>
 	<input type="radio" id="female" name="sex" value="female">
@@ -103,10 +107,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<input type="date" id="birthday" name="dateofbirth"><br>
 	<label for="hiredate">Hired on:<label/><br>
 	<input type="date" id="hiredate" name="datehired"><br>
-<!--	<label for="organization">Organization ID:<label/><br>
+    <label for="organization">Organization ID:<label/><br>
 	<input type="number" id="organization" name="orgid">
-	<span class="error"><?php echo "* ".$orgidErr;?></span><br>
-	-->
+
 <br>
 <input type="submit">
 </form><br><br>

@@ -155,6 +155,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <h1> Update a project </h1>
@@ -172,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<label for="p_title">Project's title:<label/><br>
 	<input type="text" id="p_title" name="title"><br>
 	<label for="description">Description:<label/><br>
-	<input type="text" id="description" name="description" size ="60"><br>
+	<input type="text" id="description" name="description" size="60" maxlength ="60"><br>
 	<label for="employee_id">Elidek employee's id:<label/><br>
 	<input type="number" id="employee_id" name="employee_id"><br>
 	<label for="program_id">ID of the program by which this project is funded:<label/><br>

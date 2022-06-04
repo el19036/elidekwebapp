@@ -30,7 +30,7 @@ echo "<h3>Projects for this researcher: $name_showing</h3>";
 if (mysqli_num_rows($result1) > 0) {
 	  // output data of each row
 	  while($row1 = mysqli_fetch_assoc($result1)) {
-		echo "Project ID: " . $row1["project_id"]. "<br>";
+		echo "Project ID: " . $row1["project_id"]. " - Project Title: ". $row1["project_title"]. "<br>";
 		}
 }
 else {

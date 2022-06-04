@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
 	}
 }
-echo "The top 5 hard-working, young researchers are:", "<br>";
+echo "<h3>"."The top 5 hard-working, young researchers are:"."</h3>". "<br>";
 $sql= 'SELECT emp.first_name as fn, emp.last_name as ln, org.org_name as onn, SUM(p.funding) as sum
 FROM project p
 INNER JOIN employee emp
@@ -43,6 +43,9 @@ if (mysqli_num_rows($result) > 0) {
 ?>
 
 <html>
+<head>
+<link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
+</head>
 <body>
 
 <br>

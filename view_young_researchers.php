@@ -12,6 +12,7 @@ if (!$conn) {
 
 echo "<br>", "Connected successfully", "<br>";
 
+echo "<h3>"."The top 5 hard-working, young researchers are: "."</h3>";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!(empty($_POST["backbutton"]))) {
 		header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
@@ -44,8 +45,6 @@ if (mysqli_num_rows($result) > 0) {
 
 <html>
 <body>
-
-<h4>The top 5 hard-working, young researchers are: </h4>
 
 <br>
 <form method="post">
