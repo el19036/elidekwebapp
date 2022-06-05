@@ -261,3 +261,6 @@ ORDER BY r.org_id ASC;
 create index idx_field_name on research_field(field_name);
 create index idx_projects_start_date on project(start_date);
 create index idx_projects_end_date on project(end_date);
+create index idx_researcher_org_id on researcher(org_id);
+create index idx_project_org_id on project(org_id);
+create index idx_project_researcher_id_ev on project(researcher_id_ev);
