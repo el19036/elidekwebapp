@@ -20,11 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 
-$name_showing = htmlspecialchars($_GET["name"]); 
+$id_showing = htmlspecialchars($_GET["id"]); 
+$name_showing = str_replace("+"," ",htmlspecialchars($_GET["name"])); 
 
 $sql1 = "SELECT * 
 		FROM researchersprojects
-		WHERE researcher_id = '$name_showing'";
+		WHERE researcher_id = '$id_showing'";
 $result1 = mysqli_query($conn, $sql1);
 echo "<h3>Projects for this researcher: $name_showing</h3>";
 if (mysqli_num_rows($result1) > 0) {

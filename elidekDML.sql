@@ -289,29 +289,167 @@ VALUES
 (55,109),(55,27),(55,29),(55,26),(55,28)
 ;
 
-
-
-INSERT INTO research_field (project_id, field_name)
-VALUES
-(1, 'X'),
-(1, 'Y'),
-(1, 'C'),
-(2, 'A'),
-(2, 'B'),
-(3, 'C'),
-(3, 'D'),
-(4, 'X'),
-(5, 'Y'),
-(6, 'X'),
-(6, 'Y'),
-(7, 'X'),
-(7, 'Y'),
-(8, 'A'),
-(8, 'B'),
-(9, 'E'),
-(9, 'F'),
-(10, 'E'),
-(10, 'F');
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 36);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 18);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 31);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 25);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 19);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 27);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 12);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 9);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 19);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 12);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 52);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 51);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 28);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 13);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 19);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 3);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 29);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 52);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 51);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 52);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 20);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 25);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 10);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 35);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 41);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 45);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 48);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 27);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 49);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 6);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 55);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 31);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 47);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 47);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 53);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 38);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 46);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 23);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 20);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 12);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 55);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 49);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 37);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 26);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 32);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 40);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 7);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 29);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 1);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 4);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 14);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 48);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 32);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 20);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 39);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 22);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 17);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 16);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 12);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 50);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 47);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 49);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 1);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 15);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 53);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 43);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 4);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 3);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 43);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 49);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 31);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 14);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 11);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 17);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 48);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 31);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 53);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 45);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 41);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 2);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 42);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 51);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 40);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 31);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 36);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 6);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 48);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 52);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 42);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 54);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 17);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 54);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 55);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 50);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 6);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 52);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 35);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 54);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 2);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 32);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 11);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 25);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 24);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 1);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 50);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 43);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 11);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 8);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 52);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 3);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 27);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 14);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 33);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 45);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 35);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 15);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 36);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 48);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 49);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 35);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 16);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 20);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 2);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 6);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 2);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 17);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 31);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 46);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 7);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 54);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 46);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 18);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 28);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 6);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 21);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 21);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 27);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 21);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 38);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 42);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 8);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 24);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 34);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 1);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 30);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 55);
+insert into research_field (field_name, project_id) values ('ECONOMICS', 31);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 23);
+insert into research_field (field_name, project_id) values ('APPLIED MATHEMATICS', 23);
+insert into research_field (field_name, project_id) values ('COMPUTER SCIENCES', 23);
+insert into research_field (field_name, project_id) values ('MATERIALS ENGINEERING', 6);
+insert into research_field (field_name, project_id) values ('ORGANIC CHEMISTRY', 38);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 50);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 21);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 23);
+insert into research_field (field_name, project_id) values ('HUMAN GENETICS', 53);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 13);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 30);
+insert into research_field (field_name, project_id) values ('ASTROPHYSICS', 17);
+insert into research_field (field_name, project_id) values ('ENTOMOLOGY', 49);
+insert into research_field (field_name, project_id) values ('ANTHROPOLOGY', 1);
 
 INSERT INTO deliverable (project_id, deliverable_title, delivery_date)
 VALUES

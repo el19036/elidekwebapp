@@ -11,12 +11,53 @@ if (!$conn) {
 }
 
 echo "<br>", "Connected successfully", "<br>";
+
+$filters = $min_start = $max_start = "";
+$final_clause = $id_clause = $duration_clause = $max_clause = $min_clause = "1";
+$id_showing = 0;
+$show_researchers ="";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!(empty($_POST["backbutton"]))) {
+		header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
+	}
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!(empty($_POST["start_date_min"]))) {
+		$min_start = date_create($_POST["start_date_min"]);
+		$min_start = date_format($min_start,"'Y-m-d'");
+		$min_clause = "DATEDIFF($min_start, start_date) < 0";
+
+	}
+	if (!(empty($_POST["start_date_max"]))) {
+		$max_start = date_create($_POST["start_date_max"]);
+		$max_start = date_format($max_start,"'Y-m-d'");
+		$max_clause = "DATEDIFF($max_start, start_date) > 0";
+	}
+	if (!(empty($_POST["duration"]))) {
+		$duration = $_POST["duration"];
+		$duration_clause = "duration = $duration";
+	}
+	if (!(empty($_POST["employee_id"]))) {
+		$employee_id = $_POST["employee_id"];
+		$id_clause = "employee_id = $employee_id";
+	}
+	$final_clause ="$min_clause AND $max_clause AND $duration_clause AND $id_clause" ;
+	$filterdur = ($duration_clause != 1) ? $duration_clause : " ";
+	$filteremp = ($id_clause != 1) ? $id_clause : " ";
+	$filterdate = (($min_start != "") ? "date > $min_start" : " "). " " .  (($max_start != "") ? "date < $max_start" : " ");
+	$filters = $filterdur . " ". $filteremp . " ". $filterdate;
+}
+
+
 ?>
 <html>
 <head>
 <link rel="icon" href="http://localhost/elidekwebapp/elidek_logo.png" type="image/x-icon" />
 </head>
 <body>
+
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <h3> Filter By: </h3>
 	Start Date:<br>
@@ -38,44 +79,12 @@ echo "<br>", "Connected successfully", "<br>";
 <input type="submit" name="backbutton" class="button" value="Back">
 </form>
 
-
+<h4>Filtering by: <?php echo $filters; ?></h4>
 </body>
 </html>
 
 <?php
-$final_clause = $id_clause = $duration_clause = $max_clause = $min_clause = "1";
-$id_showing = 0;
-$show_researchers ="";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!(empty($_POST["backbutton"]))) {
-		header("Location:http://localhost/elidekwebapp/queries_main_menu.php");
-	}
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!(empty($_POST["start_date_min"]))) {
-		$min_start = date_create($_POST["start_date_min"]);
-		$min_start = date_format($min_start,"'Y-m-d'");
-		$min_clause = "DATEDIFF($min_start, start_date) < 0";
-
-			echo "DATEDIFF($min_start, start_date) < 0", "<br>";
-	}
-	if (!(empty($_POST["start_date_max"]))) {
-		$max_start = date_create($_POST["start_date_max"]);
-		$max_start = date_format($max_start,"'Y-m-d'");
-		$max_clause = "DATEDIFF($max_start, start_date) > 0";
-	}
-	if (!(empty($_POST["duration"]))) {
-		$duration = $_POST["duration"];
-		$duration_clause = "duration = $duration";
-	}
-	if (!(empty($_POST["employee_id"]))) {
-		$employee_id = $_POST["employee_id"];
-		$id_clause = "employee_id = $employee_id";
-	}
-	$final_clause ="$min_clause AND $max_clause AND $duration_clause AND $id_clause" ;
-}
 	$sql = "SELECT project_id, start_date, end_date, duration, project_title, employee_id FROM project WHERE $final_clause";
 	$result = mysqli_query($conn, $sql);
 

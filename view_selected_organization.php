@@ -21,7 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $id_showing = htmlspecialchars($_GET["id"]); 
-echo "<h3>Researchers Working in Organization: $id_showing</h3>";
+$name_showing = str_replace("+"," ",htmlspecialchars($_GET["name"])); 
+
+
+echo "<h3>Researchers Working in Organization: $name_showing</h3>";
 $sql1 = "SELECT * FROM organizationsresearchers WHERE org_id = '$id_showing'";
 $result1 = mysqli_query($conn, $sql1);
 
