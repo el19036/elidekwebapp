@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (mysqli_num_rows($result) > 0) {
 	  // output data of each row
 	  while($row = mysqli_fetch_assoc($result)) {
-		$url = "http://localhost/elidekwebapp/view_selected_projects.php?name=" . $row["researcher_id"];	
+		$url = "http://localhost/elidekwebapp/view_selected_projects.php?id=" . $row["researcher_id"] . "&name=" . str_replace(" ","+",($row["fname"]. " ". $row["lname"]));	
 		echo "<a href=$url>Researcher ID: </a>" . $row["researcher_id"]. " - First Name: " . $row["fname"]. " - Last Name: " . $row["lname"]."<br>";
 	  }
 	} else {

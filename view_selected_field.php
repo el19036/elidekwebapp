@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 
-$name_showing = htmlspecialchars($_GET["name"]); 
+$name_showing = str_replace("+"," ",htmlspecialchars($_GET["name"])); 
 
 $sql1 = "SELECT p.project_id as project_idA, f.field_name, p.project_title as title
 		FROM project p 
